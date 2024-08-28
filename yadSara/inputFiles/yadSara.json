@@ -1,0 +1,277 @@
+{
+    "name": "YadSara transfer",
+    "vaersion": "1.0.0",
+    "remark": "2024.08.04",
+    "defaultParams": {
+        "firm_code": 1,
+        "primary_trans_class": 331
+    },
+    "paramsValidation": [
+        {
+            "name": "firm_code",
+            "type": "number",
+            "require": true
+        },
+        {
+            "name": "primary_trans_class",
+            "type": "string",
+            "require": false
+        },
+        {
+            "name": "doc_nbr",
+            "type": "string",
+            "require": true
+        }
+    ],
+    "stages": [
+        {
+            "name": "lgstc_actl_docs",
+            "query": {
+                "select": [
+                    "LGSTC_ACTL_DOCS.PRMY_TRNS_CLSS",
+                    "LGSTC_ACTL_DOCS.EVNT_DATE",
+                    "LGSTC_ACTL_DOCS.DOC_NBR",
+                    "LGSTC_ACTL_DOCS.ORDR_NBR",
+                    "LGSTC_ACTL_DOCS.DFLT_STRM_CODE",
+                    "LGSTC_ACTL_DOCS.DFLT_TO_STRM_CODE",
+                    "LGSTC_ACTL_DOCS.TRUCK_FULL_NBR",
+                    "LGSTC_ACTL_DOCS.DOC_RMRK",
+                    "LGSTC_ACTL_DOCS.TRNS_STAT",
+                    "LGSTC_ACTL_DOCS.FIRM_CODE",
+                    "LGSTC_ACTL_DOCS.FREE_FLD_1",
+                    "STRMS.STRM_NAME",
+                    "DRIVERS.DRIVER_NAME",
+                    "TRNS_CLSS_PARMS.MAIN_SPAWN_SECND_TRNS",
+                    "LGSTC_TRNS_TIME.LINE_NBR",
+                    "LGSTC_TRNS_TIME.CRE_DATIME",
+                    "VU_WEB_YADS_LTA_331_UNION.TO_DOC",
+                    "VU_WEB_YADS_LTA_331_UNION.TO_STRM_CODE_CHILD",
+                    "VU_WEB_YADS_LTA_331_UNION.TO_STRM_NAME_CHILD"
+                ],
+                "from": "LGSTC_ACTL_DOCS",
+                "where": [
+                    {
+                        "field": "LGSTC_ACTL_DOCS.FIRM_CODE",
+                        "value": "%{params.firm_code}%"
+                    },
+                    {
+                        "field": "LGSTC_ACTL_DOCS.DOC_NBR",
+                        "value": "%{params.doc_nbr}%"
+                    },
+                    {
+                        "field": "LGSTC_ACTL_DOCS.PRMY_TRNS_CLSS",
+                        "value": 331
+                    },
+                    {
+                        "field": "VU_WEB_YADS_LTA_331_UNION.DOC_TYPE",
+                        "value": "PARENT"
+                    },
+                    {
+                        "field": "LGSTC_ACTL_DOCS.TRNS_STAT",
+                        "value": 50,
+                        "type": "<"
+                    }
+                ],
+                "leftJoin": [
+                    {
+                        "table": "STRMS",
+                        "on": [
+                            {
+                                "key1": "LGSTC_ACTL_DOCS.DFLT_STRM_CODE",
+                                "key2": "STRMS.STRM_CODE"
+                            },
+                            {
+                                "key1": "STRMS.FIRM_CODE",
+                                "key2": "LGSTC_ACTL_DOCS.FIRM_CODE"
+                            }
+                        ]
+                    },
+                    { 
+                        "table": "VU_WEB_YADS_LTA_331_UNION",
+                        "on": [
+                            {
+                                "key1": "VU_WEB_YADS_LTA_331_UNION.FIRM_CODE",
+                                "key2": "LGSTC_ACTL_DOCS.FIRM_CODE"
+                            },
+                            {
+                                "key1": "VU_WEB_YADS_LTA_331_UNION.PRMY_TRNS_CLSS",
+                                "key2": "LGSTC_ACTL_DOCS.PRMY_TRNS_CLSS"
+                            },
+                            {
+                                "key1": "VU_WEB_YADS_LTA_331_UNION.DOC_NBR",
+                                "key2": "LGSTC_ACTL_DOCS.DOC_NBR"
+                            }
+                     
+                        ]
+                    },
+                    {
+                        "table": "DRIVERS",
+                        "on": [
+                            {
+                                "key1": "LGSTC_ACTL_DOCS.DRIVER_CODE",
+                                "key2": "DRIVERS.DRIVER_CODE"
+                            }
+                        ]
+                    },
+                    {
+                        "table": "TRNS_CLSS_PARMS",
+                        "on": [
+                            {
+                                "key1": "LGSTC_ACTL_DOCS.FIRM_CODE",
+                                "key2": "LGSTC_ACTL_DOCS.FIRM_CODE"
+                            },
+                            {
+                                "key1": "LGSTC_ACTL_DOCS.PRMY_TRNS_CLSS",
+                                "key2": "TRNS_CLSS_PARMS.PRMY_TRNS_CLSS"
+                            },
+                            {
+                                "key1": "LGSTC_ACTL_DOCS.SECND_TRNS_CLSS",
+                                "key2": "TRNS_CLSS_PARMS.SECND_TRNS_CLSS"
+                            }
+                        ]
+                    },
+                    {
+                        "table": "LGSTC_TRNS_TIME",
+                        "on": [
+                            {
+                                "key1": "LGSTC_ACTL_DOCS.DOC_NBR",
+                                "key2": "LGSTC_TRNS_TIME.DOC_NBR"
+                            },
+                            {
+                                "key1": "LGSTC_ACTL_DOCS.FIRM_CODE",
+                                "key2": "LGSTC_TRNS_TIME.FIRM_CODE"
+                            },
+                            {
+                                "key1": "LGSTC_ACTL_DOCS.PRMY_TRNS_CLSS",
+                                "key2": "LGSTC_TRNS_TIME.PRMY_TRNS_CLSS"
+                            }
+                        ]
+                    }
+                ],
+                "first": true
+            },
+            "breakOnEmpty": true
+        },
+        {
+            "name": "lgstc_actl_trns",
+            "query": {
+                "select": [
+                    "LGSTC_ACTL_TRNS.LINE_TRNS_STAT",
+                    "LGSTC_ACTL_TRNS.PART_CODE",
+                    "LGSTC_ACTL_TRNS.LINE_NBR",
+                    "LGSTC_ACTL_TRNS.QNTY_1",
+
+                    "LGSTC_ACTL_TRNS.QNTY_1",
+                    "LGSTC_ACTL_TRNS.FIRM_CODE",
+                    "LGSTC_ACTL_TRNS.ORDR_NBR",
+                    "LGSTC_ACTL_TRNS.ORDR_LINE_NBR",
+                    "LGSTC_ACTL_TRNS.PRMY_TRNS_CLSS",
+                    "LGSTC_ACTL_TRNS.DOC_NBR",
+                    "LGSTC_ACTL_TRNS.LOT_NBR",
+                    {"raw":"LGSTC_FRCST_TRNS.QNTY as APROVAL_QNTY"},
+                    {"raw": "NVL(LGSTC_FRCST_TRNS.FREE_FLD_1, LGSTC_FRCST_TRNS.QNTY) AS ORDR_QNTY"},
+                    {
+                        "raw": "GET_PART_DSCR(\"LGSTC_ACTL_TRNS\".\"FIRM_CODE\",\"LGSTC_ACTL_TRNS\".\"PART_CODE\",\"LGSTC_ACTL_TRNS\".\"PRMY_TRNS_CLSS\",\n                \"LGSTC_ACTL_TRNS\".\"DOC_NBR\",\"LGSTC_ACTL_TRNS\".\"LINE_NBR\",'XH','*','*') as PART_DSCR_XH"
+                    },
+                    {
+                        "raw": "GET_PART_DSCR(\"LGSTC_ACTL_TRNS\".\"FIRM_CODE\",\"LGSTC_ACTL_TRNS\".\"PART_CODE\",\"LGSTC_ACTL_TRNS\".\"PRMY_TRNS_CLSS\",\n        \"LGSTC_ACTL_TRNS\".\"DOC_NBR\",\"LGSTC_ACTL_TRNS\".\"LINE_NBR\",'R',\"LGSTC_ACTL_TRNS\".\"SPLR_CODE\",\"LGSTC_ACTL_TRNS\".\"CUST_CODE\") as PART_DSCR_R"
+                    }
+                ],
+                "from": "LGSTC_ACTL_TRNS",
+                "leftJoin": [
+                    {
+                        "table": "LGSTC_FRCST_TRNS",
+                        "on": [
+                            {
+                                "key1": "LGSTC_ACTL_TRNS.ORDR_NBR",
+                                "key2": "LGSTC_FRCST_TRNS.DOC_NBR"
+                            },
+                            {
+                                "key1": "LGSTC_ACTL_TRNS.ORDR_LINE_NBR",
+                                "key2": "LGSTC_FRCST_TRNS.LINE_NBR"
+                            },
+                            {
+                                "key2": 332,
+                                "key1": "LGSTC_FRCST_TRNS.PRMY_TRNS_CLSS"
+                            },
+                            {
+                                "key1": "LGSTC_ACTL_TRNS.FIRM_CODE",
+                                "key2": "LGSTC_FRCST_TRNS.FIRM_CODE"
+                            }
+                        ]
+                    }
+                ],
+                "where": [
+                    {
+                        "field": "LGSTC_ACTL_TRNS.FIRM_CODE",
+                        "value": "%{params.firm_code}%"
+                    },
+                    {
+                        "field": "LGSTC_ACTL_TRNS.DOC_NBR",
+                        "value": "%{params.doc_nbr}%"
+                    },
+                    {
+                        "field": "LGSTC_ACTL_TRNS.PRMY_TRNS_CLSS",
+                        "value": 331
+                    },
+                    {
+                        "field":"LGSTC_ACTL_TRNS.LINE_NBR",
+                        "value":0,
+                        "type":">"
+                    },
+                    {
+                        "field": "LGSTC_ACTL_TRNS.LINE_TRNS_STAT",
+                        "value": 50,
+                        "type": "<"
+                    }
+                ]
+            },
+            "breakOnEmpty": true
+        },
+        {
+            "name": "stream_to",
+            "query": {
+                "select": [
+                    "STRM_CODE",
+                    "STRM_NAME"
+                ],
+                "from": "STRMS",
+                "where": [
+                    {
+                        "field": "FIRM_CODE",
+                        "value": "%{params.firm_code}%"
+                    },
+                    {
+                        "field": "STRM_CODE",
+                        "value": "%{lgstc_actl_docs.DFLT_TO_STRM_CODE}%"
+                    }
+                ],
+                "first": true
+            },
+            "breakOnEmpty": true
+        }
+    ],
+    "export": {
+      "csv": {
+        "stageName": "lgstc_actl_docs",
+        "header": {
+          "DOC_NBR": "doc number"
+                }
+      },
+      "html": {
+        "template": "YadSara transfer"
+      },
+      "pdf": {
+        "template": "YadSara transfer"
+      },
+      "printer": {
+        "template": "YadSara transfer"
+      },
+      "xlsx": {
+        "sheets": [
+          "lgstc_actl_docs",
+          "lgstc_actl_trns"
+        ]
+      }
+    }
+}

@@ -1,0 +1,12 @@
+C:\Program Files (x86)\Pervasive Software\PSQL\bin\;
+
+
+C:\Program Files (x86)\Business Objects\Common\3.5\bin\NOTES\;
+C:\Program Files (x86)\Business Objects\Common\3.5\bin\NOTES\DATA\;
+ C:\Oracle\product\11.2.0\client_1\bin;
+ %SystemRoot%\system32;
+%SystemRoot%;
+%SystemRoot%\System32\Wbem;
+%systemroot%\System32\WindowsPowerShell\v1.0\;
+%systemroot%\System32\WindowsPowerShell\v1.0\;
+%systemroot%\System32\WindowsPowerShell\v1.0\

@@ -1,0 +1,13 @@
+{
+    "border": {
+        "top": "30px",
+        "bottom": "0px",
+        "left": "10px"
+    },
+    "format": "A4",
+    "footer": {
+        "contents": {
+            "default": "<div style=\"background-color: #00255C; color: white; padding: 10px; padding-top: 50px; width: 100%; height: '50px'; font-family:Tahoma;text-align: right;\">\r\n    <h3>\r\n        <span>\r\n        <b>\r\n                ת.ד. 4888, העיר העתיקה, קיסריה 30889 |\r\n        </b>\r\n    </span>\r\n        <span>\r\n                    *6550 <small>שלוחה</small> 1 |\r\n        </span>\r\n        <span>\r\n             www.caesarea.com \r\n        </span>\r\n  </h3>\r\n\r\n</div>\r\n"
+        }
+    }
+}

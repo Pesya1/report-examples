@@ -1,0 +1,3926 @@
+
+<html>
+<head>
+    <!-- variables -->
+    
+    
+    <style>
+
+        body {
+            direction: rtl;
+        }
+
+        html {
+/* zoom: 0.55; */
+}
+
+
+
+        @media print {
+            .pagebreak {
+                page-break-before: always;
+                /* page-break-after works, as well */
+            }
+        }
+        @media all {
+            .page-break {display: block; page-break-before: always;  }
+        }
+
+        @media print {
+            .page-break { display: block; page-break-before: always; }
+        }
+
+        .footer {
+            height: 100px;
+            position: fixed;
+            bottom: 100px;
+            width: 100%;
+        }
+        .footer2 {
+            height: 100px;
+            position: absolute;
+            bottom: 100px;
+            width: 100%;
+        }
+        .container {
+            display: flex; 
+            width: 100%;
+            min-width: 100vw !important;
+
+        }
+
+        .subheader{
+            /* display: flex; */
+            width: 100% !important;
+            min-width: 100vw !important;
+            /* background-color: blueviolet; */
+        }
+
+        /* colors */
+        .first-column {
+            /* background-color: #74e590; */
+            float: right
+            /* margin-left: 90px; */
+        }
+        .second-column {
+            /* background-color: #ff6666; */
+            float: left
+        }
+        .first-page{
+            /* min-width: 10in;
+            min-height: 14in; */
+            width: 100%;
+            /* height: 100%; */
+            /* width: 10in;
+            height: 14in;
+            max-width: 10in;
+            max-height: 14in;  */
+            /* background-color: rgb(219, 181, 255); */
+
+        }
+        .second-page{
+            /* width: 10in;
+            height: 14in;
+            max-width: 10in;
+            max-height: 14in; */
+            width: 100%;
+        }
+        .first-page-child{
+            padding-right: 0.6in;
+            padding-left: 0.6in;
+        }
+        .second-page-child{
+            padding-right: 1in;
+            padding-left: 1in;
+        }
+        .green{
+            /* background-color: rgb(159, 255, 223); */
+        }
+        .yellow{
+            /* background-color: yellow; */
+        }
+        .blue {
+        /* background-color: rgb(140, 140, 239); */
+    }
+
+    .red {
+        /* background-color: rgb(255, 97, 97); */
+    }
+
+    .font{
+        font-style:normal;
+        font-weight:normal;
+        font-size:12pt;
+        font-family:Tahoma;
+        color:#000000
+    }
+    .font10{
+        font-style:normal;
+        font-weight:normal;
+        font-size:14pt;
+        font-family:Tahoma;
+        color:#000000
+    }
+    .bold-font{
+        font-style:normal;
+        font-weight:bold;
+        font-size:12pt;
+        font-family:Tahoma;
+        color:#000000;
+    }
+    .bold10{
+        font-style:normal;
+        font-weight:bold;
+        font-size:14pt;
+        font-family:Tahoma;
+        color:#000000;
+    }
+
+    .headers{
+        /* background-color: aquamarine !important; */
+        min-height: 200px !important;
+        width: 100% !important;
+        min-width: 100vw !important;
+        /* border:5px solid darkgoldenkrod !important; */
+    }
+
+    table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid rgb(0, 0, 0);
+            border: 1px solid rgb(0, 0, 0);
+            min-width: 680px;
+            /* max-width: 680px; */
+        }
+        td {
+            border-top: 1px solid rgb(188, 188, 188);
+            border-right: 1px solid rgb(188, 188, 188);
+            padding: 5px;
+        }
+
+        .headertr {
+            border-top: 1px solid rgb(0, 0, 0);
+            border-bottom: 1px solid rgb(0, 0, 0);
+            border-right: 1px solid rgb(0, 0, 0);
+        }
+
+        .firsttr {
+            border-top: 0px !important;
+        }
+
+        .firsttd {
+            border-right: 0px !important;
+        }
+
+        tr {
+            padding: 5px
+        }
+
+        .noborder {
+            border: 0px;
+        }
+
+    </style>
+</head>
+
+<body dir="rtl" class="green" style="width: 100%;height: 11in;max-height: 11in; ">
+    <!-- style="width: 8.5in;height: 11in;max-width: 8.5in;max-height: 11in; " -->
+    <!-- long variables -->
+    <div>
+        
+        
+        
+
+
+
+
+
+
+ 
+
+    </div>
+
+    <div class="first-page">
+        <div class="first-page-child">
+
+<!-- headers -->
+<div class="headers">
+    <!-- כותרת firm_code= 11 -->
+    
+    <div>
+
+        <div style="padding-top: 20px;text-align: center;" >
+             <!-- <img style="width:150px;height:144px;display: block;margin: auto;" src="data:image/png;base64,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" /> -->
+             <img style="height:100px;display: block;margin: auto;" src="data:image/png;base64,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" />
+
+        </div>
+
+        <div style="display: inline-block; text-align: left;width: 100%;">
+            <span class="font10" style="display: inline-block;width: 100%;">
+                   <!-- כיתוב חפ -->
+            <span
+                style="">
+                ח.פ.</span>
+ <!-- חפ -->
+                <span style="">
+                    557398252
+                </span>
+            </span>
+          
+
+        </div>
+           
+</div>
+
+         
+
+
+</div>
+<!-- end headers -->
+
+
+<!-- sub header -->
+<div class="container" style="width: 100%;">
+<div class="subheader">
+    
+    
+    <!-- right- subheader -->
+        <div class="first-column" style="margin-top:5px;">
+
+        <!-- לכבוד -->
+        <div style="display: inline-block;"><span
+           class="bold10"     style="color:#000080">לכבוד:</span>
+
+            
+                <!-- name -->
+            <span class="bold10"
+                style="margin-right: 20px;color:#000080">
+                ספק פטור ממע&#34;מ
+            </span>
+
+            </span><br /></SPAN></div>
+
+       
+
+
+        <!-- address-->
+        <div style="margin-top:3px;margin-right:70px;">
+            <span class="font" >
+                שולח לחמו על פני המים דרך ללא מוצא 25
+            </span>
+            <br />
+            </div>
+
+        <!-- address -->
+        <div style="margin-top:3px;margin-right:70px;"><span
+            class="font"  >
+                עיר חלולה
+                    13524
+            </span>
+        </div>
+
+        <!--לידי   -->
+        <div style="margin-top:3px;margin-right:70px;display: inline-block;">
+            <span  class="bold-font"> 
+                לידי:
+            </span>
+            
+            <span style="margin-right: 20px;" class="font">
+                Moran
+            </span>        
+           
+        </div>
+ <br />
+        <!-- מספר ספק     -->
+        <div style="margin-top:3px;margin-right:70px;display: inline-block;">
+          <span  class="font">מספר ספק:
+            </span> 
+        
+        <span
+                style="margin-right: 20px;" class="font">
+                123
+            </span>
+
+        </div>
+
+        
+    </div>
+
+
+
+     <!-- left- subheader -->
+    <div class="second-column">
+
+        <!-- מספר דף -->
+        <div style=""><span
+            class="font">דף 1 מתוך 2
+            </span></div>
+
+        <!-- תאריך הזמנה -->
+        
+            <div style="display: inline-block;padding-top: 5px;">
+              
+                <span class="bold-font" style="padding-left: 5px;">
+               תאריך הזמנה:
+                </span>
+                <span
+                class="bold-font">
+                    30-10-1996
+                </span>
+            </div>
+          
+            
+        <br />
+
+                <!-- שם המזמין  -->
+                <div style="margin-top:5px;display: inline-block;">
+                    <span class="font" style="padding-left: 5px;">שם
+                        המזמין :
+                    </span>
+                 
+                <span  class="font">
+                        שרון
+                    </span>
+                    <br />
+                </div>
+             <br />
+
+                <!-- ליצירת קשר -->
+                
+                    <div style="margin-top:5px;display: inline-block;">
+                    <span class="font" style="padding-left: 5px;">ליצירת
+                            קשר :
+                    </span>
+         
+                    
+                     <span class="font" style="padding-left: 5px;">
+                          אביה
+                     </span>   
+                              
+                            
+                         
+                            <span class="font"  style="padding-left: 5px;">
+                          טל :
+                           </span>
+                           
+                           <span
+                           class="font" style="padding-left: 5px;">
+                               0548965456
+                           </span>
+                           
+                        </div>
+
+             
+
+
+
+
+    </div>
+
+</div>
+ </div>
+<br/>
+
+<br /> 
+
+<div width="100%" class="yellow" style="width: 100%;margin-top: 80px;;">
+    <!-- הזמנת רכש -->
+    <div class="container">
+    <div class="container blue" style=" margin-top: 80px;width: 100%;height: 50px; padding:5px !important">
+        <span class="red bold10"  style="font-size:16pt;color:#000080;margin: auto;padding:25px !important">
+          הזמנת רכש מס'
+            1
+        </span>
+    </div>
+</div>
+
+<div style="margin-top:20px;">
+
+        <!-- א ג נ -->
+    <div style=""><span
+        class="bold-font">א.ג.נ.</span></div>
+
+
+    <div style=""><span
+        class="bold-font">נא לספק לנו את
+            הציוד בהתאם לפרטים ולכמויות דלהלן:
+        </span></div>
+</div>
+</div>
+
+    <!-- -------------------------------------------------------------- -->
+    <!-- table -->
+    <div width="100%" style="margin-top: 10px;  ">
+        <table style="width:100%; ">
+
+
+            <!-- header -->
+            <tr style="background-color: rgb(255, 255, 255);">
+
+                <!-- # -->
+                <td class="headertr " style=""><span
+                    class="bold-font">#</span></td>
+
+                <!-- פריט -->
+                <td class="headertr" style=""><span
+                    class="bold-font">פריט</span></td>
+
+                <!-- שם פריט -->
+                <td class="headertr" style=""><span
+                    class="bold-font">שם
+                        פריט
+                    </span><span
+                    class="bold-font">
+                    </span><br /></SPAN></td>
+
+                   <!-- מחסן -->
+                <!-- <td class="headertr" style="">
+                    <span class="bold-font">מחסן</span>
+                </td> -->
+
+
+                <!-- ת. נדרש -->
+                <td class="headertr" style=""><span
+                    class="bold-font">ת.
+                        נדרש
+                    </span><span
+                    class="bold-font">
+                    </span><br /></SPAN></td>
+
+
+                <!-- יחי -->
+                <td class="headertr" style=""><span
+                        class="bold-font">יח&apos;</span><span
+                        class="bold-font">
+                    </span><br /></SPAN></td>
+
+                <!-- כמות -->
+                <td class="headertr" style=""><span
+                        class="bold-font">כמות</span><span
+                        class="bold-font">
+                    </span><br /></SPAN></td>
+
+                <!-- מחיר -->
+                <td class="headertr" style=""><span
+                        class="bold-font">מחיר</span><span
+                        class="bold-font">
+                    </span><br /></SPAN></td>
+
+                <!-- סכום בשח -->
+                <td class="headertr" style=""><span
+                        class="bold-font">
+                      סכום בש&#34;ח
+                    </span><span
+                        class="bold-font">
+                        
+                    </span><br /></SPAN></td>
+
+
+
+
+            </tr>
+
+            <!-- row -->
+            
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            1
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        752
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            אינו מנהל מלאי
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1996
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        מ&#34;א
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        50
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        5
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           252.46
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+                <tr> 
+                    <td colspan="8" class="font" style="border-right: 1px solid rgb(0, 0, 0);;">
+                        זהירות, שביר! נא להעביר בזהירות מירבית. אין אחריות על פציעה
+                    </td>
+                </tr>
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            2
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        754
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            פריט בעל יחידה משנית...................&#34;
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1900
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        ק&#34;ג
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        40
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        2
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           83.35
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            3
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        755
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                             ERAN פריט אריזה ABC
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/2000
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        קופסה
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           1.23
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            4
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        752
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            אינו מנהל מלאי
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1996
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        מ&#34;א
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        50
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        5
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           252.46
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+                <tr> 
+                    <td colspan="8" class="font" style="border-right: 1px solid rgb(0, 0, 0);;">
+                        זהירות, שביר! נא להעביר בזהירות מירבית. אין אחריות על פציעה
+                    </td>
+                </tr>
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            5
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        754
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            פריט בעל יחידה משנית...................&#34;
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1900
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        ק&#34;ג
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        40
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        2
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           83.35
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            6
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        755
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                             ERAN פריט אריזה ABC
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/2000
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        קופסה
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           1.23
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            7
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        752
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            אינו מנהל מלאי
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1996
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        מ&#34;א
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        50
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        5
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           252.46
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+                <tr> 
+                    <td colspan="8" class="font" style="border-right: 1px solid rgb(0, 0, 0);;">
+                        זהירות, שביר! נא להעביר בזהירות מירבית. אין אחריות על פציעה
+                    </td>
+                </tr>
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            8
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        754
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            פריט בעל יחידה משנית...................&#34;
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1900
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        ק&#34;ג
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        40
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        2
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           83.35
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            9
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        755
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                             ERAN פריט אריזה ABC
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/2000
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        קופסה
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           1.23
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            10
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        752
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            אינו מנהל מלאי
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1996
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        מ&#34;א
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        50
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        5
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           252.46
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+                <tr> 
+                    <td colspan="8" class="font" style="border-right: 1px solid rgb(0, 0, 0);;">
+                        זהירות, שביר! נא להעביר בזהירות מירבית. אין אחריות על פציעה
+                    </td>
+                </tr>
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            11
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        754
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            פריט בעל יחידה משנית...................&#34;
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1900
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        ק&#34;ג
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        40
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        2
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           83.35
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            12
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        755
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                             ERAN פריט אריזה ABC
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/2000
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        קופסה
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           1.23
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            13
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        752
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            אינו מנהל מלאי
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1996
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        מ&#34;א
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        50
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        5
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           252.46
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+                <tr> 
+                    <td colspan="8" class="font" style="border-right: 1px solid rgb(0, 0, 0);;">
+                        זהירות, שביר! נא להעביר בזהירות מירבית. אין אחריות על פציעה
+                    </td>
+                </tr>
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            14
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        754
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            פריט בעל יחידה משנית...................&#34;
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1900
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        ק&#34;ג
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        40
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        2
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           83.35
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            15
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        755
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                             ERAN פריט אריזה ABC
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/2000
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        קופסה
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           1.23
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            16
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        752
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            אינו מנהל מלאי
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1996
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        מ&#34;א
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        50
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        5
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           252.46
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+                <tr> 
+                    <td colspan="8" class="font" style="border-right: 1px solid rgb(0, 0, 0);;">
+                        זהירות, שביר! נא להעביר בזהירות מירבית. אין אחריות על פציעה
+                    </td>
+                </tr>
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            17
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        754
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            פריט בעל יחידה משנית...................&#34;
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1900
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        ק&#34;ג
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        40
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        2
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           83.35
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            18
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        755
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                             ERAN פריט אריזה ABC
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/2000
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        קופסה
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           1.23
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            19
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        752
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            אינו מנהל מלאי
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1996
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        מ&#34;א
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        50
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        5
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           252.46
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+                <tr> 
+                    <td colspan="8" class="font" style="border-right: 1px solid rgb(0, 0, 0);;">
+                        זהירות, שביר! נא להעביר בזהירות מירבית. אין אחריות על פציעה
+                    </td>
+                </tr>
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            20
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        754
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            פריט בעל יחידה משנית...................&#34;
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1900
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        ק&#34;ג
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        40
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        2
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           83.35
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            21
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        755
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                             ERAN פריט אריזה ABC
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/2000
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        קופסה
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           1.23
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            22
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        752
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            אינו מנהל מלאי
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1996
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        מ&#34;א
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        50
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        5
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           252.46
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+                <tr> 
+                    <td colspan="8" class="font" style="border-right: 1px solid rgb(0, 0, 0);;">
+                        זהירות, שביר! נא להעביר בזהירות מירבית. אין אחריות על פציעה
+                    </td>
+                </tr>
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            23
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        754
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            פריט בעל יחידה משנית...................&#34;
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1900
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        ק&#34;ג
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        40
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        2
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           83.35
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            24
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        755
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                             ERAN פריט אריזה ABC
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/2000
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        קופסה
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           1.23
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            25
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        752
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            אינו מנהל מלאי
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1996
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        מ&#34;א
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        50
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        5
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           252.46
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+                <tr> 
+                    <td colspan="8" class="font" style="border-right: 1px solid rgb(0, 0, 0);;">
+                        זהירות, שביר! נא להעביר בזהירות מירבית. אין אחריות על פציעה
+                    </td>
+                </tr>
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            26
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        754
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            פריט בעל יחידה משנית...................&#34;
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1900
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        ק&#34;ג
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        40
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        2
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           83.35
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            27
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        755
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                             ERAN פריט אריזה ABC
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/2000
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        קופסה
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           1.23
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            28
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        752
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            אינו מנהל מלאי
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1996
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        מ&#34;א
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        50
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        5
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           252.46
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+                <tr> 
+                    <td colspan="8" class="font" style="border-right: 1px solid rgb(0, 0, 0);;">
+                        זהירות, שביר! נא להעביר בזהירות מירבית. אין אחריות על פציעה
+                    </td>
+                </tr>
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            29
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        754
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            פריט בעל יחידה משנית...................&#34;
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1900
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        ק&#34;ג
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        40
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        2
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           83.35
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            30
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        755
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                             ERAN פריט אריזה ABC
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/2000
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        קופסה
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           1.23
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            31
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        752
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            אינו מנהל מלאי
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1996
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        מ&#34;א
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        50
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        5
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           252.46
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+                <tr> 
+                    <td colspan="8" class="font" style="border-right: 1px solid rgb(0, 0, 0);;">
+                        זהירות, שביר! נא להעביר בזהירות מירבית. אין אחריות על פציעה
+                    </td>
+                </tr>
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            32
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        754
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            פריט בעל יחידה משנית...................&#34;
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1900
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        ק&#34;ג
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        40
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        2
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           83.35
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            33
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        755
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                             ERAN פריט אריזה ABC
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/2000
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        קופסה
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           1.23
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            34
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        752
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            אינו מנהל מלאי
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1996
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        מ&#34;א
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        50
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        5
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           252.46
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+                <tr> 
+                    <td colspan="8" class="font" style="border-right: 1px solid rgb(0, 0, 0);;">
+                        זהירות, שביר! נא להעביר בזהירות מירבית. אין אחריות על פציעה
+                    </td>
+                </tr>
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            35
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        754
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                            פריט בעל יחידה משנית...................&#34;
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/1900
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        ק&#34;ג
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        40
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        2
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           83.35
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+                <tr style="background-color: rgb(255, 255, 255);">
+
+                    <!-- # -->
+                    <td class="firsttd"><span
+                        class="font">
+                            36
+                        </span></td>
+
+                    <!-- קוד פריט-->
+                    <td style="">
+                    <span class="font">
+                        755
+                    </span>
+                </td>
+
+                    <!-- שם פריט -->
+                    <td style=""><span
+                        class="font">
+                        
+                            
+                             ERAN פריט אריזה ABC
+                        </span>
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- מחסן -->
+                    <!-- <td style="">
+                        <span class="font">
+                            . מיקומים לא מוכתבים
+                        </span>
+                    </td> -->
+
+
+                        
+                    <!-- ת נדרש -->
+                    <td style=""><span
+                        class="font">
+                            14/11/2000
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                    <!-- יחי' -->
+                    <td style=""><span
+                        class="font">
+                        קופסה
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- כמות -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- מחיר -->
+                    <td style=""><span
+                        class="font">
+                        1
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+                    <!-- סה"כ בש"ח -->
+                    <td style=""><span
+                        class="font">
+                           1.23
+                        </span><span
+                        class="font">
+                        </span><br /></SPAN></td>
+
+
+
+                </tr>
+
+                <!-- comment row -->
+                
+
+                
+
+                <!-- last row- black line -->
+                <tr> 
+                    <td colspan="8" class="font" style="border-right: 1px solid rgb(0, 0, 0);border-top:  1px solid rgb(0, 0, 0);">
+                    </td>
+                </tr>
+
+<!-- אם יש הנחה -->
+
+
+
+
+
+
+<!-- סהכ לפני מעמ -->
+                    <tr style="background-color: rgb(255, 255, 255);">
+
+                        <!-- <td class="noborder"></td> -->
+                        <td class="noborder"></td>
+                        <td class="noborder"></td>
+                        <td class="noborder"></td>
+                        <td class="noborder"></td>
+                        <td class="noborder"></td>
+                        <td class="noborder" style="font-size: 10pt;"><span
+                                class="font">
+                                סה"כ לפני מע"מ:
+                            </span><span
+                                class="font">
+                            </span><br /></SPAN></td>
+
+                        <td class="noborder"></td>
+                        <td class="noborder" style=""><span
+                                class="font">
+                                331.63
+                            </span><span
+                                class="font">
+                            </span><br /></SPAN></td>
+
+                    <!-- מעמ -->
+                    <tr style="background-color: rgb(255, 255, 255);">
+                        <td class="noborder"></td>
+                        <!-- <td class="noborder"></td> -->
+                        <td class="noborder"></td>
+                        <td class="noborder"></td>
+                        <td class="noborder"></td>
+                        <td class="noborder"></td>
+
+                        <td class="noborder" style=""><span
+                                class="font">
+                            17%
+                            </span><span
+                                class="font">
+                            </span><br /></SPAN></td>
+
+                        <td class="noborder" style=""><span
+                                class="font">מע"מ</span><span
+                                class="font">
+                            </span><br /></SPAN></td>
+
+                        <td class="noborder" style=""><span
+                                class="font">
+                            56.38
+                            </span><span
+                                class="font">
+                            </span><br /></SPAN></td>
+
+                    </tr>
+
+
+
+<!-- סהכ הזמנה -->
+                    <tr style="background-color: rgb(255, 255, 255);">
+                        <td class="noborder"></td>
+                        <td class="noborder"></td>
+                        <!-- <td class="noborder"></td> -->
+                        <td class="noborder"></td>
+                        <td class="noborder"></td>
+                        <td class="noborder"></td>
+                        <td class="noborder" style=""><span
+                                class="bold-font">
+                                סה"כ הזמנה:
+                            </span><span
+                                class="bold-font">
+                            </span><br /></SPAN></td>
+
+                        <td class="noborder" class="noborder"></td>
+                        <td class="noborder" style=""><span
+                                class="bold-font">
+                            388.01
+                            </span><span
+                                class="bold-font">
+                            </span><br /></SPAN></td>
+
+                    </tr>
+
+        </table>
+
+<!-- תנאי תשלום -->
+        <div style="line-height:12px;padding: 10px;"><span
+                class="bold-font">תנאי תשלום:
+            </span>
+
+            <span class="bold-font">
+            שוטף+30    
+            </span>
+        </div>
+
+        
+        <!-- הערה -->
+        <div style="line-height:12px;padding: 10px;"><span
+            class="font">הערה:
+        </span>
+
+        <span class="font">
+        הזמנה רגילה    
+        </span>
+    </div>
+    
+
+
+        <div style="width:61px;line-height:12px;">
+            </SPAN></div>
+        </div> 
+        <!-- <footer class="footer">
+            <img style="width:11in;margin: auto;" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAEVCbADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBKSsLW/EekeGrVZ9W1GO2Rh8inc0j/MoO1F+ZvvL90fLmvLfEnxz2SeR4bslkRH5ubwNiTGfuorA7W+Uhi3qCoq4Upz+FEOcVue40UUVBYUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAJRXnOv8Axe8MaNFKtvdf2ndr92G1+ZT8u4N5n3dvTdt3Mu7pxXj3jT4j6p4y8uAxiwsI/wDl3ilZvN+7/rPurJtZfl+Vdu7/AIFW1PDzmZzqpHt3iP4n+GPDc/2ae7a6u1bDw2eHZPmZW3HIXhl5Xdu9q8k1/wCM/iTVoZ7fTo49Ktm43Q/PPjbtK+Yfc7sqqleOfXzf5abXfTwkIfFqc0q8mSSyy3EzzTSPJJI293cklyTuJY/eZmb+Ko6KK6UrGTdz7fooorwT0gooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiii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Ow/NgbhhmX5v4mb+HOTzWscLUluZ+2ifTl/qmn6VCs+oX1taQs3liS4lVFLf3dzfQ1wmofGrwjZun2ee8vg+Qxt7Zl2dOT5mz9M/hXzlLK9xM800jySSEu7uSS5JyWYnlmY/xUzNdMcCvtMyliGeq6r8ddduWZNLsLWyjaHaDKzTOr8/MrfKPTgqenviuH1nxj4j8QxtHqmsXU8TAK0QcJEwDblyibVJ3dyuen92sCiuiNGnHZGTqSe4UUUVsQFFFFAgooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA+36KKK8E9QKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiis7UNUsdJgE+o31taQs2xXnlVFLY6bm+hoAv0tcJqXxU8IadJcRtrEdxJEmdlqjSrIdu7ar42Z/wCBY9cVzF/8etIS3B07SL6afPKTskS4+q7+fwq40py2RDnGJ7FRXzrqPxx1+5eYafY2NpG67UZ90ssfvncqk53MuV/2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gCiiiiwBRRRRYAoooosAUUUUWAKKKKLAFFFFFgCiiiiwBRRRRYAoooosAUUUUWAKKKKLAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUCCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooGFFFFABRRRQAUUUUCCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKXNBrR0jRNS8Q362Ol2sl1cFWfy0IAVV+8xJYAL/Dkt/dX+JaUpRjHmkVGPMZ2KSuq1f4eeKtA0yXUtT0vyLODb5knnxNjcyqv3WZvvEfw1hWGl6hq0rR6fY3N26LuZbaJnZV+7ubarVEakXHmTHytblKitC/0bVNJCNqOm3lorttja5geNWZf7u5VqWXw7rsFm17Lo2oxWqrvaeS2dUVW/i3Mu3bVe0j/MHKZVFalvoOpT3um2zWslu2pSJHaPOjIj7mVVYMy8r8y/Mu6rGs+E9c0OW5F7pl0IbZ9kl0sD+S3zbdyuyruXcV/wC+qXtI83LzByyMOirT2F7F5vmWk6eRtM26Nl2bvu7v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LJu83cqLu27V2/c/2vvVzdOptOMYxjyxCUuYKKKKokKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKBhRRRQAUUUUCCiiigAooooAKKKKACiiigYUUUUCCiiigAooooAKKKKBhRRRQAUUUUCCiiigAooooGFFFFAgooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKBhRRRQIKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKBhRRRQIKKKKACiiigYUUUUCCiiigAooooAKKKKACiiigD2z/hn3/qaP/KeP/jlH/DPv/U0f+U8f/HKKK8r6xV7nTyR7B/wz7/1NH/lPH/xyj/hn3/qaP/KeP/jlFFH1ir3Dkj2D/hn3/qaP/KeP/jlH/DPv/U0f+U8f/HKKKPrFXuHJHsH/AAz7/wBTR/5Tx/8AHKP+Gff+po/8p4/+OUUUfWKvcOSPYP8Ahn3/AKmj/wAp4/8AjlH/AAz7/wBTR/5Tx/8AHKKKPrFXuHJHsH/DPv8A1NH/AJTx/wDHKP8Ahn3/AKmj/wAp4/8AjlFFH1ir3Dkj2D/hn3/qaP8Aynj/AOOUf8M+/wDU0f8AlPH/AMcooo+sVe4ckewf8M+/9TR/5Tx/8co/4Z9/6mj/AMp4/wDjlFFH1ir3Dkj2D/hn3/qaP/KeP/jlH/DPv/U0f+U8f/HKKKPrFXuHJHsH/DPv/U0f+U8f/HKP+Gff+po/8p4/+OUUUfWKvcOSPYP+Gff+po/8p4/+OUf8M+/9TR/5Tx/8cooo+sVe4ckewf8ADPv/AFNH/lPH/wAco/4Z9/6mj/ynj/45RRR9Yq9w5I9g/wCGff8AqaP/ACnj/wCOUf8ADPv/AFNH/lPH/wAcooo+sVe4ckewf8M+/wDU0f8AlPH/AMco/wCGff8AqaP/ACnj/wCOUUUfWKvcOSPYP+Gff+po/wDKeP8A45R/wz7/ANTR/wCU8f8Axyiij6xV7hyR7B/wz7/1NH/lPH/xyj/hn3/qaP8Aynj/AOOUUUfWKvcOSPYP+Gff+po/8p4/+OUf8M+/9TR/5Tx/8cooo+sVe4ckewf8M+/9TR/5Tx/8co/4Z9/6mj/ynj/45RRR9Yq9w5I9g/4Z9/6mj/ynj/45R/wz7/1NH/lPH/xyiij6xV7hyR7B/wAM+/8AU0f+U8f/AByj/hn3/qaP/KeP/jlFFH1ir3Dkj2D/AIZ9/wCpo/8AKeP/AI5R/wAM+/8AU0f+U8f/AByiij6xV7hyR7B/wz7/ANTR/wCU8f8Axyj/AIZ9/wCpo/8AKeP/AI5RRR9Yq9w5I9g/4Z9/6mj/AMp4/wDjlH/DPv8A1NH/AJTx/wDHKKKPrFXuHJHsH/DPv/U0f+U8f/HKP+Gff+po/wDKeP8A45RRR9Yq9w5I9g/4Z9/6mj/ynj/45R/wz7/1NH/lPH/xyiij6xV7hyR7B/wz7/1NH/lPH/xyj/hn3/qaP/KeP/jlFFH1ir3Dkj2D/hn3/qaP/KeP/jlH/DPv/U0f+U8f/HKKKPrFXuHJHsH/AAz7/wBTR/5Tx/8AHKP+Gff+po/8p4/+OUUUfWKvcOSPYP8Ahn3/AKmj/wAp4/8AjlH/AAz7/wBTR/5Tx/8AHKKKPrFXuHJHsH/DPv8A1NH/AJTx/wDHKP8Ahn3/AKmj/wAp4/8AjlFFH1ir3Dkj2D/hn3/qaP8Aynj/AOOUf8M+/wDU0f8AlPH/AMcooo+sVe4ckewf8M+/9TR/5Tx/8co/4Z9/6mj/AMp4/wDjlFFH1ir3Dkj2D/hn3/qaP/KeP/jlH/DPv/U0f+U8f/HKKKPrFXuHJHsH/DPv/U0f+U8f/HKP+Gff+po/8p4/+OUUUfWKvcOSPYP+Gff+po/8p4/+OUf8M+/9TR/5Tx/8cooo+sVe4ckewf8ADPv/AFNH/lPH/wAco/4Z9/6mj/ynj/45RRR9Yq9w5I9g/wCGff8AqaP/ACnj/wCOUf8ADPv/AFNH/lPH/wAcooo+sVe4ckewf8M+/wDU0f8AlPH/AMco/wCGff8AqaP/ACnj/wCOUUUfWKvcOSPYP+Gff+po/wDKeP8A45R/wz7/ANTR/wCU8f8Axyiij6xV7hyR7B/wz7/1NH/lPH/xyj/hn3/qaP8Aynj/AOOUUUfWKvcOSPYP+Gff+po/8p4/+OUf8M+/9TR/5Tx/8cooo+sVe4ckewf8M+/9TR/5Tx/8co/4Z9/6mj/ynj/45RRR9Yq9w5I9g/4Z9/6mj/ynj/45R/wz7/1NH/lPH/xyiij6xV7hyR7B/wAM+/8AU0f+U8f/AByj/hn3/qaP/KeP/jlFFH1ir3Dkj2D/AIZ9/wCpo/8AKeP/AI5R/wAM+/8AU0f+U8f/AByiij6xV7hyR7B/wz7/ANTR/wCU8f8Axyj/AIZ9/wCpo/8AKeP/AI5RRR9Yq9w5I9g/4Z9/6mj/AMp4/wDjlH/DPv8A1NH/AJTx/wDHKKKPrFXuHJHsH/DPv/U0f+U8f/HKP+Gff+po/wDKeP8A45RRR9Yq9w5I9g/4Z9/6mj/ynj/45R/wz7/1NH/lPH/xyiij6xV7hyR7B/wz7/1NH/lPH/xyj/hn3/qaP/KeP/jlFFH1ir3Dkj2D/hn3/qaP/KeP/jlH/DPv/U0f+U8f/HKKKPrFXuHJHsH/AAz7/wBTR/5Tx/8AHKP+Gff+po/8p4/+OUUUfWKvcOSPYP8Ahn3/AKmj/wAp4/8AjlH/AAz7/wBTR/5Tx/8AHKKKPrFXuHJHsH/DPv8A1NH/AJTx/wDHKP8Ahn3/AKmj/wAp4/8AjlFFH1ir3Dkj2D/hn3/qaP8Aynj/AOOUf8M+/wDU0f8AlPH/AMcooo+sVe4ckewf8M+/9TR/5Tx/8co/4Z9/6mj/AMp4/wDjlFFH1ir3Dkj2D/hn3/qaP/KeP/jlH/DPv/U0f+U8f/HKKKPrFXuHJHsH/DPv/U0f+U8f/HKP+Gff+po/8p4/+OUUUfWKvcOSPYP+Gff+po/8p4/+OUf8M+/9TR/5Tx/8cooo+sVe4ckewf8ADPv/AFNH/lPH/wAco/4Z9/6mj/ynj/45RRR9Yq9w5I9g/wCGff8AqaP/ACnj/wCOUf8ADPv/AFNH/lPH/wAcooo+sVe4ckewf8M+/wDU0f8AlPH/AMco/wCGff8AqaP/ACnj/wCOUUUfWKvcOSPYP+Gff+po/wDKeP8A45R/wz7/ANTR/wCU8f8Axyiij6xV7hyR7B/wz7/1NH/lPH/xyj/hn3/qaP8Aynj/AOOUUUfWKvcOSPYP+Gff+po/8p4/+OUf8M+/9TR/5Tx/8cooo+sVe4ckewf8M+/9TR/5Tx/8co/4Z9/6mj/ynj/45RRR9Yq9w5I9g/4Z9/6mj/ynj/45R/wz7/1NH/lPH/xyiij6xV7hyR7B/wAM+/8AU0f+U8f/AByj/hn3/qaP/KeP/jlFFH1ir3Dkj2D/AIZ9/wCpo/8AKeP/AI5R/wAM+/8AU0f+U8f/AByiij6xV7hyR7B/wz7/ANTR/wCU8f8Axyj/AIZ9/wCpo/8AKeP/AI5RRR9Yq9w5I9g/4Z9/6mj/AMp4/wDjlH/DPv8A1NH/AJTx/wDHKKKPrFXuHJHsH/DPv/U0f+U8f/HKP+Gff+po/wDKeP8A45RRR9Yq9w5I9g/4Z9/6mj/ynj/45R/wz7/1NH/lPH/xyiij6xV7hyR7B/wz7/1NH/lPH/xyj/hn3/qaP/KeP/jlFFH1ir3Dkj2D/hn3/qaP/KeP/jlH/DPv/U0f+U8f/HKKKPrFXuHJHsH/AAz7/wBTR/5Tx/8AHKP+Gff+po/8p4/+OUUUfWKvcOSPYP8Ahn3/AKmj/wAp4/8AjlH/AAz7/wBTR/5Tx/8AHKKKPrFXuHJHsH/DPv8A1NH/AJTx/wDHKP8Ahn3/AKmj/wAp4/8AjlFFH1ir3Dkj2D/hn3/qaP8Aynj/AOOUf8M+/wDU0f8AlPH/AMcooo+sVe4ckewf8M+/9TR/5Tx/8co/4Z9/6mj/AMp4/wDjlFFH1ir3Dkj2D/hn3/qaP/KeP/jlH/DPv/U0f+U8f/HKKKPrFXuHJHsH/DPv/U0f+U8f/HKP+Gff+po/8p4/+OUUUfWKvcOSPYP+Gff+po/8p4/+OUf8M+/9TR/5Tx/8cooo+sVe4ckewf8ADPv/AFNH/lPH/wAco/4Z9/6mj/ynj/45RRR9Yq9w5I9g/wCGff8AqaP/ACnj/wCOUf8ADPv/AFNH/lPH/wAcooo+sVe4ckewf8M+/wDU0f8AlPH/AMco/wCGff8AqaP/ACnj/wCOUUUfWKvcOSPYP+Gff+po/wDKeP8A45R/wz7/ANTR/wCU8f8Axyiij6xV7hyR7B/wz7/1NH/lPH/xyj/hn3/qaP8Aynj/AOOUUUfWKvcOSPYP+Gff+po/8p4/+OUf8M+/9TR/5Tx/8cooo+sVe4ckewf8M+/9TR/5Tx/8co/4Z9/6mj/ynj/45RRR9Yq9w5I9g/4Z9/6mj/ynj/45R/wz7/1NH/lPH/xyiij6xV7hyR7B/wAM+/8AU0f+U8f/AByj/hn3/qaP/KeP/jlFFH1ir3Dkj2D/AIZ9/wCpo/8AKeP/AI5R/wAM+/8AU0f+U8f/AByiij6xV7hyR7B/wz7/ANTR/wCU8f8Axyj/AIZ9/wCpo/8AKeP/AI5RRR9Yq9w5I9g/4Z9/6mj/AMp4/wDjlH/DPv8A1NH/AJTx/wDHKKKPrFXuHJHsH/DPv/U0f+U8f/HKP+Gff+po/wDKeP8A45RRR9Yq9w5I9g/4Z9/6mj/ynj/45R/wz7/1NH/lPH/xyiij6xV7hyR7B/wz7/1NH/lPH/xyj/hn3/qaP/KeP/jlFFH1ir3Dkj2D/hn3/qaP/KeP/jlH/DPv/U0f+U8f/HKKKPrFXuHJHsH/AAz7/wBTR/5Tx/8AHKP+Gff+po/8p4/+OUUUfWKvcOSPYP8Ahn3/AKmj/wAp4/8AjlH/AAz7/wBTR/5Tx/8AHKKKPrFXuHJHsH/DPv8A1NH/AJTx/wDHKP8Ahn3/AKmj/wAp4/8AjlFFH1ir3Dkj2D/hn3/qaP8Aynj/AOOUf8M+/wDU0f8AlPH/AMcooo+sVe4ckewf8M+/9TR/5Tx/8co/4Z9/6mj/AMp4/wDjlFFH1ir3Dkj2D/hn3/qaP/KeP/jlH/DPv/U0f+U8f/HKKKPrFXuHJHsH/DPv/U0f+U8f/HKP+Gff+po/8p4/+OUUUfWKvcOSPYP+Gff+po/8p4/+OUf8M+/9TR/5Tx/8cooo+sVe4ckewf8ADPv/AFNH/lPH/wAco/4Z9/6mj/ynj/45RRR9Yq9w5I9g/wCGff8AqaP/ACnj/wCOUf8ADPv/AFNH/lPH/wAcooo+sVe4ckewf8M+/wDU0f8AlPH/AMco/wCGff8AqaP/ACnj/wCOUUUfWKvcOSPYP+Gff+po/wDKeP8A45R/wz7/ANTR/wCU8f8Axyiij6xV7hyR7B/wz7/1NH/lPH/xyj/hn3/qaP8Aynj/AOOUUUfWKvcOSPYP+Gff+po/8p4/+OUf8M+/9TR/5Tx/8cooo+sVe4ckewf8M+/9TR/5Tx/8co/4Z9/6mj/ynj/45RRR9Yq9w5I9g/4Z9/6mj/ynj/45R/wz7/1NH/lPH/xyiij6xV7hyR7B/wAM+/8AU0f+U8f/AByj/hn3/qaP/KeP/jlFFH1ir3Dkj2D/AIZ9/wCpo/8AKeP/AI5R/wAM+/8AU0f+U8f/AByiij6xV7hyR7B/wz7/ANTR/wCU8f8Axyj/AIZ9/wCpo/8AKeP/AI5RRR9Yq9w5I9g/4Z9/6mj/AMp4/wDjlH/DPv8A1NH/AJTx/wDHKKKPrFXuHJHsH/DPv/U0f+U8f/HKP+Gff+po/wDKeP8A45RRR9Yq9w5I9g/4Z9/6mj/ynj/45R/wz7/1NH/lPH/xyiij6xV7hyR7B/wz7/1NH/lPH/xyj/hn3/qaP/KeP/jlFFH1ir3Dkj2D/hn3/qaP/KeP/jlH/DPv/U0f+U8f/HKKKPrFXuHJHsH/AAz7/wBTR/5Tx/8AHKP+Gff+po/8p4/+OUUUfWKvcOSPYP8Ahn3/AKmj/wAp4/8AjlH/AAz7/wBTR/5Tx/8AHKKKPrFXuHJHsH/DPv8A1NH/AJTx/wDHKP8Ahn3/AKmj/wAp4/8AjlFFH1ir3Dkj2D/hn3/qaP8Aynj/AOOUf8M+/wDU0f8AlPH/AMcooo+sVe4ckewf8M+/9TR/5Tx/8co/4Z9/6mj/AMp4/wDjlFFH1ir3Dkj2D/hn3/qaP/KeP/jlH/DPv/U0f+U8f/HKKKPrFXuHJHsH/DPv/U0f+U8f/HKP+Gff+po/8p4/+OUUUfWKvcOSPYP+Gff+po/8p4/+OUf8M+/9TR/5Tx/8cooo+sVe4ckewf8ADPv/AFNH/lPH/wAco/4Z9/6mj/ynj/45RRR9Yq9w5I9g/wCGff8AqaP/ACnj/wCOUf8ADPv/AFNH/lPH/wAcooo+sVe4ckewf8M+/wDU0f8AlPH/AMco/wCGff8AqaP/ACnj/wCOUUUfWKvcOSPYP+Gff+po/wDKeP8A45R/wz7/ANTR/wCU8f8Axyiij6xV7hyR7B/wz7/1NH/lPH/xyj/hn3/qaP8Aynj/AOOUUUfWKvcOSPYP+Gff+po/8p4/+OUf8M+/9TR/5Tx/8cooo+sVe4ckewf8M+/9TR/5Tx/8co/4Z9/6mj/ynj/45RRR9Yq9w5I9g/4Z9/6mj/ynj/45R/wz7/1NH/lPH/xyiij6xV7hyR7B/wAM+/8AU0f+U8f/AByj/hn3/qaP/KeP/jlFFH1ir3Dkj2D/AIZ9/wCpo/8AKeP/AI5R/wAM+/8AU0f+U8f/AByiij6xV7hyR7B/wz7/ANTR/wCU8f8Axyj/AIZ9/wCpo/8AKeP/AI5RRR9Yq9w5I9g/4Z9/6mj/AMp4/wDjlH/DPv8A1NH/AJTx/wDHKKKPrFXuHJHsH/DPv/U0f+U8f/HKP+Gff+po/wDKeP8A45RRR9Yq9w5I9g/4Z9/6mj/ynj/45R/wz7/1NH/lPH/xyiij6xV7hyR7B/wz7/1NH/lPH/xyj/hn3/qaP/KeP/jlFFH1ir3Dkj2D/hn3/qaP/KeP/jlH/DPv/U0f+U8f/HKKKPrFXuHJHsH/AAz7/wBTR/5Tx/8AHKP+Gff+po/8p4/+OUUUfWKvcOSPYP8Ahn3/AKmj/wAp4/8AjlH/AAz7/wBTR/5Tx/8AHKKKPrFXuHJHsH/DPv8A1NH/AJTx/wDHKP8Ahn3/AKmj/wAp4/8AjlFFH1ir3Dkj2D/hn3/qaP8Aynj/AOOUf8M+/wDU0f8AlPH/AMcooo+sVe4ckewf8M+/9TR/5Tx/8co/4Z9/6mj/AMp4/wDjlFFH1ir3Dkj2D/hn3/qaP/KeP/jlH/DPv/U0f+U8f/HKKKPrFXuHJHsH/DPv/U0f+U8f/HKP+Gff+po/8p4/+OUUUfWKvcOSPYP+Gff+po/8p4/+OUf8M+/9TR/5Tx/8cooo+sVe4ckex//Z" alt="My Image">
+       </footer> -->
+   </div>
+    </div>
+
+
+
+</div>
+
+
+    
+
+
+<!-- <div class="pagebreak"> </div> -->
+
+<div  class="second-page red" style="page-break-before: always"> 
+
+<!-- second page-------------------------------- -->
+<div class=" second-page-child yellow">
+   
+<!-- headers -->
+<div class="headers">
+    <!-- כותרת firm_code= 11 -->
+    
+    <div>
+
+        <div style="padding-top: 20px;text-align: center;" >
+            <!-- <img style="width:150px;height:144px;display: block;margin: auto;" src="data:image/png;base64,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" /> -->
+            <img style="height:100px;display: block;margin: auto;" src="data:image/png;base64,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" />
+       </div>
+
+        <div style="display: inline-block; text-align: left;width: 100%;">
+            <span class="font10" style="display: inline-block;width: 100%;">
+                   <!-- כיתוב חפ -->
+            <span
+                style="">
+                ח.פ.</span>
+ <!-- חפ -->
+                <span style="">
+                    557398252
+                </span>
+            </span>
+          
+
+        </div>
+           
+</div>
+
+         
+
+
+</div>
+<!-- end headers -->
+    <div>
+        <!-- מספר דף -->
+        <div class="" style="padding-top:0.8in;width: 100%;">
+            <span style="float: left;"
+                class="font">דף 2 מתוך 2
+            </span></div>
+            </div>
+        <br/>
+<div class="container" style="flex-direction: column;gap: 20px;padding-top: 0.05in;">
+
+        <!-- כתובת למשלוח הסחורה -->
+        <div style=" "><span
+            class="bold10">
+            כתובת למשלוח סחורה:
+        </span></div>
+        
+        <div style=""><span
+            class="font">
+            1400 מועדון הגולף - מגרשי הגולף, שדרות רוטשילד, קיסריה
+        </span></div>
+        <div style=""><span
+            class="font">
+            1600/815 - מרכז קיסריה - מרכז מסחרי, שדרות רוטשילד, קיסריה
+        </span></div>
+        <div style=""><span
+            class="font">
+            1200/812 - נמל קיסריה - העיר העתיקה, נמל קיסריה
+        </span></div>
+        <div style=""><span
+            class="font">
+            900 - משרד מכירות - רחוב הכוכבים 29 , שכונת הגולף, קיסריה
+        </span></div>
+        <div style=""><span
+            class="font">
+            השאר ישלח לרחוב אשל 2, פארק התעשייה הדרומי, קיסריה
+        </span></div>
+        
+        <div></div>
+        <!-- הנחיות לספק -->
+        <div style=""><span
+            class="bold10">
+            הנחיות לספק:
+        </span></div>
+        
+        
+        <div style=""><span
+            class="font">
+            * יש לציין על כל מסמך (תעודת משלוח וחשבונית) את מספר הזמנת הרכש הרלוונטית.
+        </span></div>
+        
+        <div style=""><span
+            class="font">
+            * כתובת למשלוח לחשבונית: ת.ד. 3001 , פארק התעשייה הדרומי, קיסריה 38900.
+        </span></div>
+        
+        <div style=""><span
+            class="font">
+            * אין להעביר, להסב ו/או לשעבד הזמנה זו או/או חלק ממנה לצד שלישי, אלא בהסכמת המזמין מראש ובכתב.
+        </span></div>
+        
+        
+        <div style=""><span
+            class="font">
+            * הספק חייב לרשום על החשבונית האם היא חלקית או סופית, במידה והחשבונית היא סופית יש לציין שאין לספק תביעות
+            נוספות בגין הזמנה זו.
+        </span>
+        </div>
+        
+        <div style=""><span
+            class="font">
+            * הספק יאשר את קבלת ההזמנה ויאשר כי הבין את תוכן ההזמנה / מהות העבודה.
+        </span></div>
+        
+        
+        <!-- הערות להזמנת עבודה / שירות  -->
+        <div style=""><span
+            class="bold10">
+            הערות להזמנת עבודה / שרות:
+        </span></div>
+        
+        
+        <!-- 1 הספק יאשר -->
+        <div style=""><span
+            class="font">
+            * הספק יאשר קבלת המסמכים הרלוונטיים לביצוע העבודה: איפיון, כתב כמויות, הסכם חתום, מפרטים ונהלים.
+        </span></div>
+        
+        <!-- הספק מאשר 2-->
+        <div style=""><span
+            class="font">
+            * הספק מאשר כי יש לו את הידע, כלי העבודה (מתאימים, תיקניים ובדוקים ע"פ הנדרש ובהתאם לתקנים) וכח האדם (מיומן
+            ומוסמך),
+            רשיונות, היתרים, תקנים, ביטוחים, הנדרשים לביצוע השרותים והמתאימים לביצוע העבודה.
+        </span><span class="font">
+        </span><br />
+        </div>
+        
+        <!-- 3 לפני ביצו עהעבודה -->
+        <div style=""><span
+            class="font">
+           <span
+                    class="font">
+                    * לפני ביצוע העבודה הספק ייבצע סקר סיכונים והכנה למשימה ויתדרך את עובדיו בהתאם.
+                </span><span
+                    class="font">
+                </span><br />
+        </SPAN>
+        </div>
+        
+        <!-- 4 אין לבצע חריגה -->
+        <div style=""><span
+            class="font">
+            <span
+                    class="font">
+                    * אין לבצע חריגה בתכולת העבודה מהזמנה זו ללא אישור המזמין מראש.
+                </span><span
+                    class="font">
+                </span><br />
+        </SPAN>
+        </div>
+        
+        <!-- 5 עם סיום העבודה -->
+        <div style=""><span
+            class="font">
+            * עם סיום העבודה הספק יבצע תהליך מסירה למזמין ויקבל את אישורו לסיום העבודה.
+        </span>
+        </div>
+
+        </div>
+        </div>
+ </div>
+</body>
+</html>
