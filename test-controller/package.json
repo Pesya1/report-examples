@@ -1,0 +1,30 @@
+{
+  "name": "erp-api-controller",
+  "version": "1.0.0-rc",
+  "description": "erp-api-controller microservice for One1ERP API",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "dotenv-defaults": "^3.0.0",
+    "dotenv-parse-variables": "^2.0.0",
+    "express": "^4.17.1",
+    "node-logger": "github:one1erp/node-logger",
+    "octopusmb-client": "github:one1erp/octopusmb-client",
+    "read-package-json": "^4.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/one1erp/api-microservice.git"
+  },
+  "author": "Dror Vomberg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/one1erp/api-microservice/issues"
+  },
+  "homepage": "https://github.com/one1erp/api-microservice#readme"
+}
