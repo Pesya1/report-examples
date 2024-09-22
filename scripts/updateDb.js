@@ -58,6 +58,7 @@ const knex=require('knex');
 
 const updateDB=async ()=>{
     try{
+        
        const client = knex({
             client: 'oracledb',
             connection: {
@@ -81,7 +82,7 @@ const updateDB=async ()=>{
           } else {
            throw('Failed to connect to Oracle database.');
           } 
-          const data = fs.readFileSync('../yadSara/flex.html', 'utf-8');
+          const data = fs.readFileSync('../yadSara/yadSara.ejs', 'utf-8');
 
 
         const sqlQuery = `UPDATE WEB_REPORTS_TEMPLATES

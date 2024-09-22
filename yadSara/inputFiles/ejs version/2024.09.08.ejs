@@ -1,4 +1,4 @@
-<% var version="2024.08.29 2" %>
+<% var version="2024.09.08 1 remove .split comment" %>
 
     <html>
 
@@ -157,7 +157,6 @@
                         </span>
 
                         <span class="font">
-                            <!-- <%= lgstc_actl_docs.EVNT_DATE.split('T')[0] %> -->
                             <%= (() => {
                                 const date = new Date(lgstc_actl_docs.EVNT_DATE);
                                 const day = String(date.getDate()).padStart(2, '0');
@@ -169,7 +168,6 @@
 
 
                         <span class="font">
-                            <!-- <%= lgstc_actl_docs.EVNT_DATE.split('T')[1].split('.')[0] %> -->
                         </span>
 
                     </div>

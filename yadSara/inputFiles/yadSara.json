@@ -1,7 +1,7 @@
 {
     "name": "YadSara transfer",
-    "vaersion": "1.0.0",
-    "remark": "2024.08.04",
+    "vaersion": "1.0.1",
+    "remark": "2024.08.29 add temp part",
     "defaultParams": {
         "firm_code": 1,
         "primary_trans_class": 331
@@ -86,7 +86,7 @@
                             }
                         ]
                     },
-                    { 
+                    {
                         "table": "VU_WEB_YADS_LTA_331_UNION",
                         "on": [
                             {
@@ -101,7 +101,6 @@
                                 "key1": "VU_WEB_YADS_LTA_331_UNION.DOC_NBR",
                                 "key2": "LGSTC_ACTL_DOCS.DOC_NBR"
                             }
-                     
                         ]
                     },
                     {
@@ -160,7 +159,6 @@
                     "LGSTC_ACTL_TRNS.PART_CODE",
                     "LGSTC_ACTL_TRNS.LINE_NBR",
                     "LGSTC_ACTL_TRNS.QNTY_1",
-
                     "LGSTC_ACTL_TRNS.QNTY_1",
                     "LGSTC_ACTL_TRNS.FIRM_CODE",
                     "LGSTC_ACTL_TRNS.ORDR_NBR",
@@ -168,8 +166,14 @@
                     "LGSTC_ACTL_TRNS.PRMY_TRNS_CLSS",
                     "LGSTC_ACTL_TRNS.DOC_NBR",
                     "LGSTC_ACTL_TRNS.LOT_NBR",
-                    {"raw":"LGSTC_FRCST_TRNS.QNTY as APROVAL_QNTY"},
-                    {"raw": "NVL(LGSTC_FRCST_TRNS.FREE_FLD_1, LGSTC_FRCST_TRNS.QNTY) AS ORDR_QNTY"},
+                    "VU_WEB_LAT.TMP_PART_NAME",
+                    "VU_WEB_DOC_RMRKS.RMRK",
+                    {
+                        "raw": "LGSTC_FRCST_TRNS.QNTY as APROVAL_QNTY"
+                    },
+                    {
+                        "raw": "NVL(LGSTC_FRCST_TRNS.FREE_FLD_1, LGSTC_FRCST_TRNS.QNTY) AS ORDR_QNTY"
+                    },
                     {
                         "raw": "GET_PART_DSCR(\"LGSTC_ACTL_TRNS\".\"FIRM_CODE\",\"LGSTC_ACTL_TRNS\".\"PART_CODE\",\"LGSTC_ACTL_TRNS\".\"PRMY_TRNS_CLSS\",\n                \"LGSTC_ACTL_TRNS\".\"DOC_NBR\",\"LGSTC_ACTL_TRNS\".\"LINE_NBR\",'XH','*','*') as PART_DSCR_XH"
                     },
@@ -199,6 +203,48 @@
                                 "key2": "LGSTC_FRCST_TRNS.FIRM_CODE"
                             }
                         ]
+                    },
+                    {
+                        "table": "VU_WEB_LAT",
+                        "on": [
+                            {
+                                "key1": "LGSTC_ACTL_TRNS.FIRM_CODE",
+                                "key2": "VU_WEB_LAT.FIRM_CODE"
+                            },
+                            {
+                                "key1": "LGSTC_ACTL_TRNS.PRMY_TRNS_CLSS",
+                                "key2": "VU_WEB_LAT.PRMY_TRNS_CLSS"
+                            },
+                            {
+                                "key1": "LGSTC_ACTL_TRNS.DOC_NBR",
+                                "key2": "VU_WEB_LAT.DOC_NBR"
+                            },
+                            {
+                                "key1": "LGSTC_ACTL_TRNS.LINE_NBR",
+                                "key2": "VU_WEB_LAT.LINE_NBR"
+                            }
+                        ]
+                    },
+                    {
+                        "table": "VU_WEB_DOC_RMRKS",
+                        "on": [
+                            {
+                                "key1": "VU_WEB_LAT.FIRM_CODE",
+                                "key2": "VU_WEB_DOC_RMRKS.FIRM_CODE"
+                            },
+                            {
+                                "key1": "VU_WEB_LAT.PRMY_TRNS_CLSS",
+                                "key2": "VU_WEB_DOC_RMRKS.PRMY_TRNS_CLSS"
+                            },
+                            {
+                                "key1": "VU_WEB_LAT.DOC_NBR",
+                                "key2": "VU_WEB_DOC_RMRKS.DOC_NBR"
+                            },
+                            {
+                                "key1": "VU_WEB_LAT.LINE_NBR",
+                                "key2": "VU_WEB_DOC_RMRKS.LINE_NBR"
+                            }
+                        ]
                     }
                 ],
                 "where": [
@@ -215,9 +261,9 @@
                         "value": 331
                     },
                     {
-                        "field":"LGSTC_ACTL_TRNS.LINE_NBR",
-                        "value":0,
-                        "type":">"
+                        "field": "LGSTC_ACTL_TRNS.LINE_NBR",
+                        "value": 0,
+                        "type": ">"
                     },
                     {
                         "field": "LGSTC_ACTL_TRNS.LINE_TRNS_STAT",
@@ -252,26 +298,26 @@
         }
     ],
     "export": {
-      "csv": {
-        "stageName": "lgstc_actl_docs",
-        "header": {
-          "DOC_NBR": "doc number"
-                }
-      },
-      "html": {
-        "template": "YadSara transfer"
-      },
-      "pdf": {
-        "template": "YadSara transfer"
-      },
-      "printer": {
-        "template": "YadSara transfer"
-      },
-      "xlsx": {
-        "sheets": [
-          "lgstc_actl_docs",
-          "lgstc_actl_trns"
-        ]
-      }
+        "csv": {
+            "stageName": "lgstc_actl_docs",
+            "header": {
+                "DOC_NBR": "doc number"
+            }
+        },
+        "html": {
+            "template": "YadSara transfer"
+        },
+        "pdf": {
+            "template": "YadSara transfer"
+        },
+        "printer": {
+            "template": "YadSara transfer"
+        },
+        "xlsx": {
+            "sheets": [
+                "lgstc_actl_docs",
+                "lgstc_actl_trns"
+            ]
+        }
     }
 }
