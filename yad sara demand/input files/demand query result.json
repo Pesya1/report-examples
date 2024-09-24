@@ -1,43 +1,46 @@
 {
-    "lgstc_frcst_docs": 
-            {
-                "DOC_NBR": 15084,
-                "RDCT_PCNT": null,
-                "AMNT_BFOR_RDCT": 0,
-                "AMNT_AFTR_RDCT": 0,
-                "EVNT_DATE": "2024-09-15T21:00:00.000Z",
-                "PRMY_TRNS_CLSS": 332,
-                "TRNS_STAT": 20,
-                "PRFM_BY_NAME": "M_MASTER",
-                "FREE_FLD_1": null,
-                "FIRM_CODE": 21,
-                "DOC_STAT": "פ",
-                "DOC_RMRK": null,
-                "SPLR_CODE": null,
-                "STRM_CODE": "15",
-                "CUR_CODE": 1,
-                "STRM_NAME": "מחסן מרלוג ירושלים",
-                "TO_STRM_NAME": "מחסן סניף פ\"ת",
-                "TO_STRM_CODE":"10"
-            }
-        ,
-        "lgstc_frcst_trns": [
-            {
-                "LINE_NBR": 1,
-                "PART_PRC": null,
-                "QNTY": 5,
-                "AMNT_AFTR_RDCT": 0,
-                "LINE_TRNS_STAT": 20,
-                "FIRM_CODE": 21,
-                "PART_CODE": "59013",
-                "PRMY_TRNS_CLSS": 332,
-                "DOC_NBR": 15084,
-                "STRM_CODE": "15",
-                "RQSTD_SHIP_DATE": null,
-                "PART_CODE_1": "59013",
-                "UNIT_CODE": 1,
-                "UNIT_SHRT_NAME": "יח",
-                "PART_LONG_NAME": "כף נעליים ארוכה מבמבוק עם אצבעות לגירוד"
-            }
-        ]
+    "lgstc_frcst_docs": {
+        "DOC_NBR": 15084,
+        "RDCT_PCNT": null,
+        "AMNT_BFOR_RDCT": 0,
+        "AMNT_AFTR_RDCT": 0,
+        "EVNT_DATE": "2024-09-15T21:00:00.000Z",
+        "PRMY_TRNS_CLSS": 332,
+        "TRNS_STAT": 20,
+        "PRFM_BY_NAME": "M_MASTER",
+        "FREE_FLD_1": null,
+        "FIRM_CODE": 21,
+        "DOC_STAT": "פ",
+        "DOC_RMRK": null,
+        "SPLR_CODE": null,
+        "STRM_CODE": "15",
+        "CUR_CODE": 1,
+        "STRM_NAME": "מחסן מרלוג ירושלים",
+        "TO_STRM_NAME": "מחסן סניף פ\"ת",
+        "TO_STRM_CODE": "מחסן סניף פ\"ת"
+    },
+    "lgstc_frcst_trns": [
+        {
+            "LINE_NBR": 1,
+            "PART_PRC": null,
+            "QNTY": 6,
+            "SHIP_QNTY": null,
+            "AMNT_AFTR_RDCT": 0,
+            "LINE_TRNS_STAT": 20,
+            "FIRM_CODE": 21,
+            "PART_CODE": "59013",
+            "PRMY_TRNS_CLSS": 332,
+            "DOC_NBR": 15084,
+            "STRM_CODE": "15",
+            "RQSTD_SHIP_DATE": null,
+            "PART_CODE_1": "59013",
+            "UNIT_CODE": 1,
+            "UNIT_SHRT_NAME": "יח",
+            "PART_LONG_NAME": "כף נעליים ארוכה מבמבוק עם אצבעות לגירוד",
+            "PART_DSCR": " ",
+            "PART_DSCR_XH": " ",
+            "PART_DSCR_R": " ",
+            "RMRK": null
+        }
+    ]
 }

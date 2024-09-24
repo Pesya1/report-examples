@@ -1,4 +1,28 @@
 {
+  "name": "YadSara demand",
+  "vaersion": "1.0.0",
+  "remark": "2024.09.24 create",
+  "defaultParams": {
+      "firm_code": 1,
+      "primary_trans_class": 332
+  },
+  "paramsValidation": [
+      {
+          "name": "firm_code",
+          "type": "number",
+          "require": true
+      },
+      {
+          "name": "primary_trans_class",
+          "type": "string",
+          "require": false
+      },
+      {
+          "name": "doc_nbr",
+          "type": "string",
+          "require": true
+      }
+  ],
     "stages":[
         {
             "name":"lgstc_frcst_docs",
@@ -25,6 +49,7 @@
 
                 ],
                 "from":"LGSTC_FRCST_DOCS",
+                "first":true,
                 "where":[
                     {
                         "field": "LGSTC_FRCST_DOCS.FIRM_CODE",
@@ -36,7 +61,7 @@
                       },
                       {
                         "field": "LGSTC_FRCST_DOCS.PRMY_TRNS_CLSS",
-                        "value": "%{params.prmy_trns_clss}%"
+                        "value": "%{params.primary_trans_class}%"
                       },
                       {
                         "field": "LGSTC_FRCST_DOCS.TRNS_STAT",
@@ -56,9 +81,8 @@
                   "key1": "STRMS.FIRM_CODE",
                   "key2": "%{params.firm_code}%"
                 }
-              ],
-              "first":true
-            },
+              ]
+                        },
             {
                 "table": "VU_WEB_STRMS",
                 "on": [
@@ -83,6 +107,7 @@
                     "LGSTC_FRCST_TRNS.LINE_NBR",
                     "LGSTC_FRCST_TRNS.PART_PRC",
                     "LGSTC_FRCST_TRNS.QNTY",
+                    "LGSTC_FRCST_TRNS.SHIP_QNTY",
                     "LGSTC_FRCST_TRNS.AMNT_AFTR_RDCT",
                     "LGSTC_FRCST_TRNS.LINE_TRNS_STAT",
                     "LGSTC_FRCST_TRNS.FIRM_CODE",
@@ -96,8 +121,15 @@
                     "UNIT_NAMES.UNIT_SHRT_NAME",
                     "PARTS.PART_LONG_NAME",
                     {
-                        "raw": "GET_PART_DSCR(\"LGSTC_FRCST_TRNS\".\"FIRM_CODE\",\"LGSTC_FRCST_TRNS\".\"PART_CODE\",\"LGSTC_FRCST_TRNS\".\"PRMY_TRNS_CLSS\",\n \"LGSTC_FRCST_TRNS\".\"DOC_NBR\",\"LGSTC_FRCST_TRNS\".\"LINE_NBR\",'X',\"LGSTC_FRCST_TRNS\".\"SPLR_CODE\",'') as FUN_GET_PART_DSCR_X"
-                      },
+                      "raw": "get_part_dscr(\"LGSTC_FRCST_TRNS\".\"FIRM_CODE\", \"LGSTC_FRCST_TRNS\".\"PART_CODE\", \"LGSTC_FRCST_TRNS\".\"PRMY_TRNS_CLSS\", \"LGSTC_FRCST_TRNS\".\"DOC_NBR\", \"LGSTC_FRCST_TRNS\".\"LINE_NBR\", 'XH', \"LGSTC_FRCST_TRNS\".\"SPLR_CODE\", \"LGSTC_FRCST_TRNS\".\"PART_CODE\") as PART_DSCR"
+                    },
+                    {
+                        "raw": "GET_PART_DSCR(\"LGSTC_FRCST_TRNS\".\"FIRM_CODE\",\"LGSTC_FRCST_TRNS\".\"PART_CODE\",\"LGSTC_FRCST_TRNS\".\"PRMY_TRNS_CLSS\",\n                \"LGSTC_FRCST_TRNS\".\"DOC_NBR\",\"LGSTC_FRCST_TRNS\".\"LINE_NBR\",'XH','*','*') as PART_DSCR_XH"
+
+                      }, 
+                    {
+                        "raw": "GET_PART_DSCR(\"LGSTC_FRCST_TRNS\".\"FIRM_CODE\",\"LGSTC_FRCST_TRNS\".\"PART_CODE\",\"LGSTC_FRCST_TRNS\".\"PRMY_TRNS_CLSS\",\n        \"LGSTC_FRCST_TRNS\".\"DOC_NBR\",\"LGSTC_FRCST_TRNS\".\"LINE_NBR\",'R',\"LGSTC_FRCST_TRNS\".\"SPLR_CODE\",\"LGSTC_FRCST_TRNS\".\"CUST_CODE\") as PART_DSCR_R"
+                    },
                       "VU_WEB_DOC_RMRKS.RMRK"
 
 
@@ -156,7 +188,7 @@
             },
             {
               "field": "LGSTC_FRCST_TRNS.PRMY_TRNS_CLSS",
-              "value": "%{params.prmy_trns_clss}%"
+              "value": "%{params.primary_trans_class}%"
             },
             {
               "field": "LGSTC_FRCST_TRNS.LINE_TRNS_STAT",
@@ -166,5 +198,29 @@
           ]
             }
         }
-    ]
+    ],
+
+    "export": {
+      "csv": {
+          "stageName": "lgstc_frcst_docs",
+          "header": {
+              "DOC_NBR": "doc number"
+          }
+      },
+      "html": {
+          "template": "yad sara demand pdf"
+      },
+      "pdf": {
+          "template": "yad sara demand pdf"
+      },
+      "printer": {
+          "template": "yad sara demand pdf"
+      },
+      "xlsx": {
+          "sheets": [
+              "lgstc_frcst_docs",
+              "lgstc_frcst_trns"
+          ]
+      }
+  }
 }

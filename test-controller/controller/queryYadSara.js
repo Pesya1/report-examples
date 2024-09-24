@@ -4,12 +4,13 @@ import client from "../libs/octopusClient.js";
 import { errorE005thrower } from "../errorThrower.js";
 import fs from 'fs/promises';
 
-let stagesJsonUrl='D:\projects\api\report & email\report-examples\yad sara demand\input files\demand.json';
+let stagesJsonUrl='..\\yad sara demand\\input files\\demand.json';
 
 export const readStages=async()=>{
     try{       
            const data =await  fs.readFile(stagesJsonUrl, 'utf-8');
-           return data?.stages || []
+           let parsedData=JSON.parse(data);
+           return parsedData?.stages || []
     }
     catch(err){
         logger.error('fail to get stages json');
@@ -95,7 +96,7 @@ const createStagesResult = async () => {
         const stages = await readStages();
         const stringStages = JSON.stringify(stages);
 
-        const params = { firm_code: 21, doc_nbr: 15084, prmy_trns_clss: 332 };
+        const params = { firm_code: 21, doc_nbr: 15084, prmy_trns_clss: 332,primary_trans_class:332 };
 
         const string_stagesWithParams = putParams(params, stages, stringStages);
 
