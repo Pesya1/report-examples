@@ -1,226 +1,228 @@
 {
   "name": "YadSara demand",
   "vaersion": "1.0.0",
-  "remark": "2024.09.24 create",
+  "remarks": [
+    "2024.09.24 create",
+    "2024.09.25 copy",
+    "2024.09.26 breakOnEmpty"
+  ],
   "defaultParams": {
-      "firm_code": 1,
-      "primary_trans_class": 332
+    "firm_code": 1,
+    "primary_trans_class": 332
   },
   "paramsValidation": [
-      {
-          "name": "firm_code",
-          "type": "number",
-          "require": true
-      },
-      {
-          "name": "primary_trans_class",
-          "type": "string",
-          "require": false
-      },
-      {
-          "name": "doc_nbr",
-          "type": "string",
-          "require": true
-      }
+    {
+      "name": "firm_code",
+      "type": "number",
+      "require": true
+    },
+    {
+      "name": "primary_trans_class",
+      "type": "string",
+      "require": false
+    },
+    {
+      "name": "doc_nbr",
+      "type": "string",
+      "require": true
+    }
   ],
-    "stages":[
-        {
-            "name":"lgstc_frcst_docs",
-            "query":{
-                "select":[
-                    "LGSTC_FRCST_DOCS.DOC_NBR",
-                    "LGSTC_FRCST_DOCS.RDCT_PCNT",
-                    "LGSTC_FRCST_DOCS.AMNT_BFOR_RDCT",
-                    "LGSTC_FRCST_DOCS.AMNT_AFTR_RDCT",
-                    "LGSTC_FRCST_DOCS.EVNT_DATE",
-                    "LGSTC_FRCST_DOCS.PRMY_TRNS_CLSS",
-                    "LGSTC_FRCST_DOCS.TRNS_STAT",
-                    "LGSTC_FRCST_DOCS.PRFM_BY_NAME",
-                    "LGSTC_FRCST_DOCS.FREE_FLD_1",
-                    "LGSTC_FRCST_DOCS.FIRM_CODE",
-                    "LGSTC_FRCST_DOCS.DOC_STAT",
-                    "LGSTC_FRCST_DOCS.DOC_RMRK",
-                    "LGSTC_FRCST_DOCS.SPLR_CODE",
-                    "LGSTC_FRCST_DOCS.STRM_CODE",
-                    "LGSTC_FRCST_DOCS.CUR_CODE",
-                    "STRMS.STRM_NAME",
-                    {"raw":"VU_WEB_STRMS.STRM_NAME as TO_STRM_NAME"},
-                    {"raw":"VU_WEB_STRMS.STRM_NAME as TO_STRM_CODE"}
-
-                ],
-                "from":"LGSTC_FRCST_DOCS",
-                "first":true,
-                "where":[
-                    {
-                        "field": "LGSTC_FRCST_DOCS.FIRM_CODE",
-                        "value": "%{params.firm_code}%"
-                      },
-                      {
-                        "field": "LGSTC_FRCST_DOCS.DOC_NBR",
-                        "value": "%{params.doc_nbr}%"
-                      },
-                      {
-                        "field": "LGSTC_FRCST_DOCS.PRMY_TRNS_CLSS",
-                        "value": "%{params.primary_trans_class}%"
-                      },
-                      {
-                        "field": "LGSTC_FRCST_DOCS.TRNS_STAT",
-                        "value": 50,
-                        "type": "<"
-                      }
-                ],
-                "leftJoin": [
-            {
-              "table": "STRMS",
-              "on": [
-                {
-                  "key1": "LGSTC_FRCST_DOCS.STRM_CODE",
-                  "key2": "STRMS.STRM_CODE"
-                },
-                {
-                  "key1": "STRMS.FIRM_CODE",
-                  "key2": "%{params.firm_code}%"
-                }
-              ]
-                        },
-            {
-                "table": "VU_WEB_STRMS",
-                "on": [
-                  {
-                    "key1": "LGSTC_FRCST_DOCS.TO_STRM_CODE",
-                    "key2": "VU_WEB_STRMS.STRM_CODE"
-                  },
-                  {
-                    "key1": "VU_WEB_STRMS.FIRM_CODE",
-                    "key2": "%{params.firm_code}%"
-                  }
-                ]
-              }
-
-        ]
-            }
-        },
-        {
-            "name":"lgstc_frcst_trns",
-            "query":{
-                "select":[
-                    "LGSTC_FRCST_TRNS.LINE_NBR",
-                    "LGSTC_FRCST_TRNS.PART_PRC",
-                    "LGSTC_FRCST_TRNS.QNTY",
-                    "LGSTC_FRCST_TRNS.SHIP_QNTY",
-                    "LGSTC_FRCST_TRNS.AMNT_AFTR_RDCT",
-                    "LGSTC_FRCST_TRNS.LINE_TRNS_STAT",
-                    "LGSTC_FRCST_TRNS.FIRM_CODE",
-                    "LGSTC_FRCST_TRNS.PART_CODE",
-                    "LGSTC_FRCST_TRNS.PRMY_TRNS_CLSS",
-                    "LGSTC_FRCST_TRNS.DOC_NBR",
-                    "LGSTC_FRCST_TRNS.STRM_CODE",
-                    "LGSTC_FRCST_TRNS.RQSTD_SHIP_DATE",
-                    "LGSTC_FRCST_TRNS.PART_CODE",
-                    "LGSTC_FRCST_TRNS.UNIT_CODE",
-                    "UNIT_NAMES.UNIT_SHRT_NAME",
-                    "PARTS.PART_LONG_NAME",
-                    {
-                      "raw": "get_part_dscr(\"LGSTC_FRCST_TRNS\".\"FIRM_CODE\", \"LGSTC_FRCST_TRNS\".\"PART_CODE\", \"LGSTC_FRCST_TRNS\".\"PRMY_TRNS_CLSS\", \"LGSTC_FRCST_TRNS\".\"DOC_NBR\", \"LGSTC_FRCST_TRNS\".\"LINE_NBR\", 'XH', \"LGSTC_FRCST_TRNS\".\"SPLR_CODE\", \"LGSTC_FRCST_TRNS\".\"PART_CODE\") as PART_DSCR"
-                    },
-                    {
-                        "raw": "GET_PART_DSCR(\"LGSTC_FRCST_TRNS\".\"FIRM_CODE\",\"LGSTC_FRCST_TRNS\".\"PART_CODE\",\"LGSTC_FRCST_TRNS\".\"PRMY_TRNS_CLSS\",\n                \"LGSTC_FRCST_TRNS\".\"DOC_NBR\",\"LGSTC_FRCST_TRNS\".\"LINE_NBR\",'XH','*','*') as PART_DSCR_XH"
-
-                      }, 
-                    {
-                        "raw": "GET_PART_DSCR(\"LGSTC_FRCST_TRNS\".\"FIRM_CODE\",\"LGSTC_FRCST_TRNS\".\"PART_CODE\",\"LGSTC_FRCST_TRNS\".\"PRMY_TRNS_CLSS\",\n        \"LGSTC_FRCST_TRNS\".\"DOC_NBR\",\"LGSTC_FRCST_TRNS\".\"LINE_NBR\",'R',\"LGSTC_FRCST_TRNS\".\"SPLR_CODE\",\"LGSTC_FRCST_TRNS\".\"CUST_CODE\") as PART_DSCR_R"
-                    },
-                      "VU_WEB_DOC_RMRKS.RMRK"
-
-
-
-                ],
-                "from":"LGSTC_FRCST_TRNS",
-                "leftJoin":[
-                    {
-                        "table": "UNIT_NAMES",
-                        "key1": "LGSTC_FRCST_TRNS.UNIT_CODE",
-                        "key2": "UNIT_NAMES.UNIT_CODE"
-                      },
-                      {
-                        "table": "PARTS",
-                        "on": [
-                          {
-                            "key1": "LGSTC_FRCST_TRNS.PART_CODE",
-                            "key2": "PARTS.PART_CODE"
-                          },
-                          {
-                            "key1": "PARTS.FIRM_CODE",
-                            "key2": "%{params.firm_code}%"
-                          }
-                        ]
-                      },
-                      {
-                        "table": "VU_WEB_DOC_RMRKS",
-                        "on": [
-                            {
-                                "key1": "LGSTC_FRCST_TRNS.FIRM_CODE",
-                                "key2": "VU_WEB_DOC_RMRKS.FIRM_CODE"
-                            },
-                            {
-                                "key1": "LGSTC_FRCST_TRNS.PRMY_TRNS_CLSS",
-                                "key2": "VU_WEB_DOC_RMRKS.PRMY_TRNS_CLSS"
-                            },
-                            {
-                                "key1": "LGSTC_FRCST_TRNS.DOC_NBR",
-                                "key2": "VU_WEB_DOC_RMRKS.DOC_NBR"
-                            },
-                            {
-                                "key1": "LGSTC_FRCST_TRNS.LINE_NBR",
-                                "key2": "VU_WEB_DOC_RMRKS.LINE_NBR"
-                            }
-                        ]
-                    }
-                ],
-                "where": [
-            {
-              "field": "LGSTC_FRCST_TRNS.FIRM_CODE",
-              "value": "%{params.firm_code}%"
-            },
-            {
-              "field": "LGSTC_FRCST_TRNS.DOC_NBR",
-              "value": "%{params.doc_nbr}%"
-            },
-            {
-              "field": "LGSTC_FRCST_TRNS.PRMY_TRNS_CLSS",
-              "value": "%{params.primary_trans_class}%"
-            },
-            {
-              "field": "LGSTC_FRCST_TRNS.LINE_TRNS_STAT",
-              "value": 50,
-              "type": "<"
-            }
-          ]
-            }
-        }
-    ],
-
-    "export": {
-      "csv": {
-          "stageName": "lgstc_frcst_docs",
-          "header": {
-              "DOC_NBR": "doc number"
+  "stages": [
+    {
+      "name": "lgstc_frcst_docs",
+      "query": {
+        "select": [
+          "LGSTC_FRCST_DOCS.DOC_NBR",
+          "LGSTC_FRCST_DOCS.RDCT_PCNT",
+          "LGSTC_FRCST_DOCS.AMNT_BFOR_RDCT",
+          "LGSTC_FRCST_DOCS.AMNT_AFTR_RDCT",
+          "LGSTC_FRCST_DOCS.EVNT_DATE",
+          "LGSTC_FRCST_DOCS.PRMY_TRNS_CLSS",
+          "LGSTC_FRCST_DOCS.TRNS_STAT",
+          "LGSTC_FRCST_DOCS.PRFM_BY_NAME",
+          "LGSTC_FRCST_DOCS.FREE_FLD_1",
+          "LGSTC_FRCST_DOCS.FIRM_CODE",
+          "LGSTC_FRCST_DOCS.DOC_STAT",
+          "LGSTC_FRCST_DOCS.DOC_RMRK",
+          "LGSTC_FRCST_DOCS.SPLR_CODE",
+          "LGSTC_FRCST_DOCS.STRM_CODE",
+          "LGSTC_FRCST_DOCS.CUR_CODE",
+          "STRMS.STRM_NAME",
+          {
+            "raw": "VU_WEB_STRMS.STRM_NAME as TO_STRM_NAME"
+          },
+          {
+            "raw": "VU_WEB_STRMS.STRM_NAME as TO_STRM_CODE"
           }
+        ],
+        "from": "LGSTC_FRCST_DOCS",
+        "first": true,
+        "where": [
+          {
+            "field": "LGSTC_FRCST_DOCS.FIRM_CODE",
+            "value": "%{params.firm_code}%"
+          },
+          {
+            "field": "LGSTC_FRCST_DOCS.DOC_NBR",
+            "value": "%{params.doc_nbr}%"
+          },
+          {
+            "field": "LGSTC_FRCST_DOCS.PRMY_TRNS_CLSS",
+            "value": "%{params.primary_trans_class}%"
+          },
+          {
+            "field": "LGSTC_FRCST_DOCS.TRNS_STAT",
+            "value": 50,
+            "type": "<"
+          }
+        ],
+        "leftJoin": [
+          {
+            "table": "STRMS",
+            "on": [
+              {
+                "key1": "LGSTC_FRCST_DOCS.STRM_CODE",
+                "key2": "STRMS.STRM_CODE"
+              },
+              {
+                "key1": "STRMS.FIRM_CODE",
+                "key2": "%{params.firm_code}%"
+              }
+            ]
+          },
+          {
+            "table": "VU_WEB_STRMS",
+            "on": [
+              {
+                "key1": "LGSTC_FRCST_DOCS.TO_STRM_CODE",
+                "key2": "VU_WEB_STRMS.STRM_CODE"
+              },
+              {
+                "key1": "VU_WEB_STRMS.FIRM_CODE",
+                "key2": "%{params.firm_code}%"
+              }
+            ]
+          }
+        ]
       },
-      "html": {
-          "template": "yad sara demand pdf"
-      },
-      "pdf": {
-          "template": "yad sara demand pdf"
-      },
-      "printer": {
-          "template": "yad sara demand pdf"
-      },
-      "xlsx": {
-          "sheets": [
-              "lgstc_frcst_docs",
-              "lgstc_frcst_trns"
-          ]
+      "breakOnEmpty": true
+    },
+    {
+      "name": "lgstc_frcst_trns",
+      "query": {
+        "select": [
+          "LGSTC_FRCST_TRNS.LINE_NBR",
+          "LGSTC_FRCST_TRNS.PART_PRC",
+          "LGSTC_FRCST_TRNS.QNTY",
+          "LGSTC_FRCST_TRNS.SHIP_QNTY",
+          "LGSTC_FRCST_TRNS.AMNT_AFTR_RDCT",
+          "LGSTC_FRCST_TRNS.LINE_TRNS_STAT",
+          "LGSTC_FRCST_TRNS.FIRM_CODE",
+          "LGSTC_FRCST_TRNS.PART_CODE",
+          "LGSTC_FRCST_TRNS.PRMY_TRNS_CLSS",
+          "LGSTC_FRCST_TRNS.DOC_NBR",
+          "LGSTC_FRCST_TRNS.STRM_CODE",
+          "LGSTC_FRCST_TRNS.RQSTD_SHIP_DATE",
+          "LGSTC_FRCST_TRNS.PART_CODE",
+          "LGSTC_FRCST_TRNS.UNIT_CODE",
+          "UNIT_NAMES.UNIT_SHRT_NAME",
+          "PARTS.PART_LONG_NAME",
+          {
+            "raw": "get_part_dscr(\"LGSTC_FRCST_TRNS\".\"FIRM_CODE\", \"LGSTC_FRCST_TRNS\".\"PART_CODE\", \"LGSTC_FRCST_TRNS\".\"PRMY_TRNS_CLSS\", \"LGSTC_FRCST_TRNS\".\"DOC_NBR\", \"LGSTC_FRCST_TRNS\".\"LINE_NBR\", 'XH', \"LGSTC_FRCST_TRNS\".\"SPLR_CODE\", \"LGSTC_FRCST_TRNS\".\"PART_CODE\") as PART_DSCR"
+          },
+          {
+            "raw": "GET_PART_DSCR(\"LGSTC_FRCST_TRNS\".\"FIRM_CODE\",\"LGSTC_FRCST_TRNS\".\"PART_CODE\",\"LGSTC_FRCST_TRNS\".\"PRMY_TRNS_CLSS\",\n                \"LGSTC_FRCST_TRNS\".\"DOC_NBR\",\"LGSTC_FRCST_TRNS\".\"LINE_NBR\",'XH','*','*') as PART_DSCR_XH"
+          },
+          {
+            "raw": "GET_PART_DSCR(\"LGSTC_FRCST_TRNS\".\"FIRM_CODE\",\"LGSTC_FRCST_TRNS\".\"PART_CODE\",\"LGSTC_FRCST_TRNS\".\"PRMY_TRNS_CLSS\",\n        \"LGSTC_FRCST_TRNS\".\"DOC_NBR\",\"LGSTC_FRCST_TRNS\".\"LINE_NBR\",'R',\"LGSTC_FRCST_TRNS\".\"SPLR_CODE\",\"LGSTC_FRCST_TRNS\".\"CUST_CODE\") as PART_DSCR_R"
+          },
+          "VU_WEB_DOC_RMRKS.RMRK"
+        ],
+        "from": "LGSTC_FRCST_TRNS",
+        "leftJoin": [
+          {
+            "table": "UNIT_NAMES",
+            "key1": "LGSTC_FRCST_TRNS.UNIT_CODE",
+            "key2": "UNIT_NAMES.UNIT_CODE"
+          },
+          {
+            "table": "PARTS",
+            "on": [
+              {
+                "key1": "LGSTC_FRCST_TRNS.PART_CODE",
+                "key2": "PARTS.PART_CODE"
+              },
+              {
+                "key1": "PARTS.FIRM_CODE",
+                "key2": "%{params.firm_code}%"
+              }
+            ]
+          },
+          {
+            "table": "VU_WEB_DOC_RMRKS",
+            "on": [
+              {
+                "key1": "LGSTC_FRCST_TRNS.FIRM_CODE",
+                "key2": "VU_WEB_DOC_RMRKS.FIRM_CODE"
+              },
+              {
+                "key1": "LGSTC_FRCST_TRNS.PRMY_TRNS_CLSS",
+                "key2": "VU_WEB_DOC_RMRKS.PRMY_TRNS_CLSS"
+              },
+              {
+                "key1": "LGSTC_FRCST_TRNS.DOC_NBR",
+                "key2": "VU_WEB_DOC_RMRKS.DOC_NBR"
+              },
+              {
+                "key1": "LGSTC_FRCST_TRNS.LINE_NBR",
+                "key2": "VU_WEB_DOC_RMRKS.LINE_NBR"
+              }
+            ]
+          }
+        ],
+        "where": [
+          {
+            "field": "LGSTC_FRCST_TRNS.FIRM_CODE",
+            "value": "%{params.firm_code}%"
+          },
+          {
+            "field": "LGSTC_FRCST_TRNS.DOC_NBR",
+            "value": "%{params.doc_nbr}%"
+          },
+          {
+            "field": "LGSTC_FRCST_TRNS.PRMY_TRNS_CLSS",
+            "value": "%{params.primary_trans_class}%"
+          },
+          {
+            "field": "LGSTC_FRCST_TRNS.LINE_TRNS_STAT",
+            "value": 50,
+            "type": "<"
+          }
+        ]
       }
+    }
+  ],
+  "export": {
+    "csv": {
+      "stageName": "lgstc_frcst_docs",
+      "header": {
+        "DOC_NBR": "doc number"
+      }
+    },
+    "html": {
+      "template": "yad sara demand pdf"
+    },
+    "pdf": {
+      "template": "yad sara demand pdf"
+    },
+    "printer": {
+      "template": "yad sara demand pdf"
+    },
+    "xlsx": {
+      "sheets": [
+        "lgstc_frcst_docs",
+        "lgstc_frcst_trns"
+      ]
+    }
   }
 }

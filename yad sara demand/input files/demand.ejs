@@ -1,4 +1,4 @@
-<% var version="2024.09.24 A" %>
+<% var version="2024.09.26 zoom" %>
 
     <html>
 
@@ -8,7 +8,7 @@
 
         <style>
             html {
-                /* zoom: 0.55; */
+                 zoom: 0.55; 
                 background-color: white;
             }
 
@@ -236,7 +236,7 @@
 
                         <% let resultText = 'דרישה להעברה בין מחסנים'; %>
 
-                        <% if (lgstc_frcst_docs.TRNS_STAT < 40) { %>
+                        <% if (lgstc_frcst_docs.TRNS_STAT > 40) { %>
                             <% resultText = 'דרישה סופית להעברה בין מחסנים'; %>
                         <% } %>
                         
