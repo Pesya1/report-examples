@@ -1,0 +1,67 @@
+1
+
+DateSerial (
+        year(CurrentDate) - 2,
+        1,
+        1 )
+
+output: 'yyyy'
+last 2 years
+
+
+2
+DateSerial (
+        year(CurrentDate) - 1,
+        1,
+        1 )
+
+output: 'yyyy'
+last 1 year
+
+3
+DateSerial (
+        year(CurrentDate)-1,
+        month(CurrentDate)-1 ,
+        1-1 )
+
+output: 'dd/yyyy'
+    `${String(currentDate.getMonth()).padStart(2, '0')}/${year - 1}`, // Third value: previous year and current month in "mm/yyyy" format
+
+4
+DateSerial (
+        year(CurrentDate)-1,
+        month(CurrentDate) ,
+        1-1 )
+output: 'dd/yyyy'
+    `${String(currentDate.getMonth()).padStart(1, '0')}/${year - 1}`, 
+
+
+5
+DateSerial (
+        year(CurrentDate)-1,
+        month(CurrentDate)+1 ,
+        1-1 )
+output: 'dd/yyyy'
+    `${String(currentDate.getMonth()).padStart(0, '0')}/${year - 1}`, // Third value: previous year and current month in "mm/yyyy" format
+
+6
+DateSerial (
+        year(CurrentDate),
+        month(CurrentDate)-1 ,
+        1-1 )
+output: 'dd/yyyy'
+
+
+7
+DateSerial (
+        year(CurrentDate),
+        month(CurrentDate) ,
+        1-1 )
+output: 'dd/yyyy'
+
+8
+DateSerial (
+        year(CurrentDate),
+        month(CurrentDate)+1 ,
+        1-1 )
+output: 'dd/yyyy'

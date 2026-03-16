@@ -1,0 +1,374 @@
+<% var version = "2025.12.18 ovilgo, actions data"; %>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<style>
+  html { background: white;
+  zoom: 0.55;
+  }
+  body { direction: rtl; font-family: Tahoma, Arial, sans-serif; padding: 18px; color:#000; }
+  .top-row { display:flex; justify-content:space-between; align-items:flex-start; }
+  .company { text-align:right; }
+  .company .name { font-weight:700; font-size:16pt; }
+  .meta { font-size:10pt; }
+  .title { text-align:center; font-weight:700; font-size:18pt; color:#a40000; margin:8px 0; }
+  .yellow-bar { background: #fff04d; padding:8px 8px;  text-align:right; border:1px solid #d6d600; display:block;  margin:8 auto 8px auto; }
+  .section { margin:8px 0; }
+  table { width:100%; border-collapse: collapse; font-size:11pt; }
+  th, td { border:1px solid #000; padding:6px 8px; vertical-align:middle; }
+  .no-border { border:0; }
+  .months-row td { border:1px solid #0a5a0a; text-align:center; background:#fff; }
+  .subheader { font-weight:700; }
+  .small { font-size:10pt; }
+  .box { border:1px solid #000; padding:6px; }
+  .box2 {margin-top: 40px;}
+  .center { text-align:center; }
+  .right { text-align:right; }
+  .left { text-align:left; }
+  .muted { color:#333; font-size:10pt; }
+  .bold { font-weight:700; }
+  .grey-bg {background-color:#eee; }
+    .grey2-bg {background-color:#cac8c8; }
+
+  .table-light th { background:#eee; }
+   .font {font-size: 12pt;}
+  .bold-font-header { font-weight: bold;font-size: 16pt;}
+  .thin { border-top:1px solid #000; border-left:0; border-right:0; }
+    .bold-font-stroke { font-weight: bold;font-size: 16pt;text-decoration: line-through;}
+
+</style>
+</head>
+<body>
+
+<%
+  // safe defaults
+  const h = (typeof header !== 'undefined' && header && header.length) ? header[0] :header || {};
+  const agent = (h.agent && h.agent.length) ? h.agent[0] : {};
+  const now = new Date();
+  const pad = (n)=> String(n).padStart(2,'0');
+  const printDay = pad(now.getDate()), printMonth = pad(now.getMonth()+1), printYear = now.getFullYear();
+  const printTime = now.toTimeString().split(' ')[0];
+
+  // creation date
+  let creText = '—';
+  if (h.CRE_DATE) {
+    const cre = new Date(h.CRE_DATE);
+    creText = pad(cre.getDate()) + '/' + pad(cre.getMonth()+1) + '/' + cre.getFullYear();
+  }
+
+
+  // dummy defaults for sections when empty
+  const blockedText = (() => {
+  switch (h.CLOSE_RSN) {
+    case '1':
+      return "פיגור חמור בתשלום";
+    case '2':
+      return "חריגה חמורה מאובליגו";
+    case '3':
+      return "המחאות מרובות חוזרות";
+    case '4':
+      return "חסימה יזומה";
+    case '5':
+      return "פיגור בתשלום";
+    default:
+      return "—";
+  }
+})();
+const blockedDate = h.CLOSE_DATE
+  ? new Date(h.CLOSE_DATE).toLocaleDateString('en-GB') // Formats to dd/mm/yyyy
+  : '19/12/2013';
+const formattedStartDate = h.CRE_DATE? new Date(h.CRE_DATE).toLocaleDateString('en-GB') : '—';
+const hok = h.PMNT_TYPE === 'ס' ? 'כן' : 'לא';
+  
+const directDebit = (h.DIRECT_DEBIT === true || h.DIRECT_DEBIT === 'כן') ? 'כן' : (h.DIRECT_DEBIT === 'לא' ? 'לא' : 'לא');
+  const recurringCharges = (typeof recurring !== 'undefined' && recurring && recurring.length) ? recurring : [];
+  const credits2 = (typeof credits !== 'undefined' && credits && credits.length) ? credits : [];
+  const parts = (typeof parts_details !== 'undefined' && parts_details && parts_details.length) ? parts_details : [];
+  const logisticDetails = (typeof logistic_transaction_details !== 'undefined' && logistic_transaction_details && logistic_transaction_details.length) ? logistic_transaction_details : [];
+%>
+
+      <!-- שם החברה מימין למעלה -->
+            <div style="text-align:right; padding-top: 10px; padding-right: 30px;">
+                <div class="bold-font-header">
+                    <%= h.FIRM_LONG_NAME %>
+                </div>
+                <!-- <div class="font">92044N</div> -->
+            </div>
+            <hr>
+
+<!-- top header -->
+<div class="top-row">
+  <div class="meta left">
+    <div>תאריך הדפסה: <strong class="bold"><%= printDay %>/<%= printMonth %>/<%= printYear %></strong></div>
+    <div>שעת הדפסה: <strong class="bold"><%= printTime %></strong></div>
+    <div style="text-align:center; font-size:12pt; margin:4px 0;">
+      <!-- Page <strong class="bold">1</strong> of <strong class="bold">1</strong> -->
+    </div>
+  </div>
+
+<!-- title -->
+<div class="title">טופס נתוני לקוח ממעלה</div>
+
+<!-- main header details -->
+<div class="section">
+  <table>
+    <tr>
+      <td style="width:60%;" class="no-border">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="text-align:left;">
+            <div class="small"><span class="bold">כמות בק"ל/טון</span> 
+            </div>
+          </div>
+
+          <div style="text-align:right;">
+            <div><span class="bold">סוכן:</span> <%= agent.CUST_LONG_DSCR || '—' %></div>
+            <div><span class="bold">לקוח:</span> <%= h.CUST_CODE || '—' %> &nbsp; <%= h.CUST_LONG_DSCR || '' %>
+            <span class="bold" style="padding-right: 30px;">תחילת עבודה:</span>
+            <span><%= formattedStartDate %> </span>
+              <span><%= h.ACTV_Y_N === String.fromCharCode(0x05DB) ? 'פעיל' : 'לא פעיל' %></span>
+            
+            </div>
+            <div><span class="bold">יישות:</span> <%= h.ENT_CODE || '—' %> &nbsp; <%= h.ENT_LONG_NAME || '' %></div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+
+<!-- yellow bar -->
+<div class="yellow-bar" >
+    <span class="bold">
+        לקוח חסום עקב:
+    </span>
+    <span>
+<%= blockedText %> 
+    </span>
+    <span class="bold" style="margin-right: 30px;">
+        מתאריך: 
+    </span>
+    <span>
+<%= blockedDate %>
+    </span>
+</div>
+
+<!-- months table -->
+<div class="section">
+  <table>
+    <tr class="table-light">
+      <th class="center"> </th>
+      <th class="right"> פריט</th>
+     
+        <th class="center"><%= monthes.FROM_PREV_YEAR_2 %></th>
+        <th class="center"><%= monthes.FROM_PREV_YEAR_1 %></th>
+        <th class="center"><%= monthes.MONTHLASTYEAR_2 %></th>
+        <th class="center"><%= monthes.MONTHLASTYEAR_1 %></th>
+        <th class="center"><%= monthes.MONTHLATYEAR %></th>
+        <th class="center"><%= monthes.MONTHPRESENT_2 %></th>
+        <th class="center"><%= monthes.MONTHPRESENT_1 %></th>
+        <th class="center"><%= monthes.MONTHPRESENT %></th>
+
+    </tr>
+    <% calc.forEach(function(item){
+      if (
+        item.PREV_YEAR_2 && item.PREV_YEAR_2 != 0 ||
+        item.PREV_YEAR_1 && item.PREV_YEAR_1 != 0 ||
+        item.MONTH_7 && item.MONTH_7 != 0 ||
+        item.MONTH_8 && item.MONTH_8 != 0 ||
+        item.MONTH_9 && item.MONTH_9 != 0 ||
+        item.MONTH_10 && item.MONTH_10 != 0 ||
+        item.MONTH_11 && item.MONTH_11 != 0 ||
+        item.MONTH_12 && item.MONTH_12 != 0
+      ) { %>
+      <tr>
+        <td class="center"><%= item.PART_CODE || '—' %></td>
+        <td class="right"><%= item.PART_SHRT_NAME || '—' %></td>
+        <td class="right"><%= formatValue(item.PREV_YEAR_2) %></td>
+        <td class="right"><%= formatValue(item.PREV_YEAR_1) %></td>
+        <td class="right"><%= formatValue(item.MONTH_7) %></td>
+        <td class="right"><%= formatValue(item.MONTH_8) %></td>
+        <td class="right"><%= formatValue(item.MONTH_9) %></td>
+        <td class="right"><%= formatValue(item.MONTH_10) %></td>
+        <td class="right"><%= formatValue(item.MONTH_11) %></td>
+        <td class="right"><%= formatValue(item.MONTH_12) %></td>
+      </tr>
+    <% } }) %>
+  </table>
+</div>
+
+<!-- נתוני רווחיות בש"ח (placeholder) -->
+<div class="section box box2" style="padding: 0px;">
+  <div class="grey2-bg" style="padding: 10px; display:flex; justify-content:space-between; align-items:center;">
+    <span class="subheader">נתוני רווחיות בש"ח:</span>
+</div>
+</div>
+
+<!-- נתוני פעילות -->
+<div class="section box " style="">
+<span class="bold-font-stroke" style="text-decoration: underline; padding:10px; margin-top: 40px;">
+    נתוני פעילות:</span>
+<span class="muted small" style="padding-right: 30px;">(בש"ח לתאריך ההדפסה)</span>
+
+<div style="margin: 15px; padding: 10px;">
+    <span>
+        <span class="font bold">חוב בפיגור:</span>
+        <span class="font"><%= formatValue(h.DEBT) %></span>
+    </span>
+
+     <span style="margin-right: 20px;">
+        <span class="font bold">חוב מזומן:</span>
+        <span class="font"><%= formatValue(h.CASH_DEBT) %></span>
+    </span>
+
+         <span style="margin-right: 20px;">
+        <span class="font bold">אובילגו מאושר:</span>
+        <span class="font"><%= formatValue(h.MAX_CREDIT) %></span>
+    </span>
+    
+     <span style="margin-right: 20px;">
+        <span class="font bold" > אובילגו מנוצל:</span>
+        <span class="font"><%= formatValue((h.ACNT_PMNT_BLNC||0)+(h.ACNT_CHQ||0)+(h.OPEN_SHIP_AMNT||0)) %></span>
+    </span>
+
+     <span style="margin-right: 20px;">
+        <span class="font bold"> הוראות קבע:</span>
+        <span class="font"><%= hok %></span>
+    </span>
+    
+</div>
+
+</div>
+
+<!-- חיובים חוזרים -->
+<div class="section box box2" style="">
+<span class="bold-font-stroke" style="text-decoration: underline; padding:10px; margin-top: 40px;">
+     חיובים חוזרים:</span>
+
+  <table style="margin-top: 10px;">
+    <tr class="table-light">
+      <th class="center">שנת מאזן</th>
+      <th class="center">מספר תעודה</th>
+      <th class="center">תאריך אירוע</th>
+      <th class="center">סכום</th>
+      <th class="center">כרטיס נגדי</th>
+      <th class="center">פרטים</th>
+    </tr>
+      <% pmnt_acnt_trns.forEach(function(r){ 
+            const formatEventDate = new Date(r.EVNT_DATE).toLocaleDateString('en-GB');
+        %>
+        <tr>
+          <td class="center"><%= r.BLNC_YEAR  %></td>
+          <td class="center"><%= r.DOC_NBR  %></td>
+          <td class="center"><%= formatEventDate %></td>
+          <td class="left"><%= formatValue(r.AMNT)  %></td>
+          <td class="center"><%= r.CONTRA_ACNT  %> <%= r.ACNT_SHRT_NAME  %></td>
+          <td class="right"><%= r.DTLS %> <%= r.DTLS2 %></td>
+        </tr>
+      <% }) %>
+<%
+function formatValue(val) {
+  if (val === 0 || val === '0' || val === null || val === undefined) return '';
+  if (typeof val === 'string') val = Number(val);
+  if (isNaN(val)) return '';
+  // Format with thousands separator and up to 3 decimals, remove trailing zeros
+    let parts = val.toFixed(3).replace(/\.0{1,3}$/, '').replace(/(\.\d{1,2})0$/, '$1').split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.length > 1 ? parts.join('.') : parts[0];
+  }
+
+let latestEventDate = '';
+if (pmnt_acnt_trns && pmnt_acnt_trns.length && pmnt_acnt_trns[0].EVNT_DATE) {
+  latestEventDate = pmnt_acnt_trns.reduce((max, r) => {
+    const currentEventDate = new Date(r.EVNT_DATE);
+    return currentEventDate > max ? currentEventDate : max;
+  }, new Date(pmnt_acnt_trns[0].EVNT_DATE));
+  latestEventDate = latestEventDate.toLocaleDateString('en-GB');
+}
+const formattedLatestDate = latestEventDate;
+%>
+    
+  </table>
+  <% if (formattedLatestDate) { %>
+  <div style="padding-top: 10px; width: 100%; text-align: left">
+    <!-- אחרון חזר ב -->
+    <span  class="subheader">אחרון חזר ב:</span>
+    <span style="padding:8px 4px;"><%= formattedLatestDate %></span>
+  </div>
+  <% } %>
+</div>
+ 
+
+<!-- בטחונות -->
+<div class="section box box2">
+<span class="bold-font-stroke" style="text-decoration: underline; padding:10px; margin-top: 40px;">
+      בטחונות:</span>
+<table style="margin-top: 10px;">
+    <tr class="table-light">
+      <th>לקוח/כרטיס</th>
+      <th>אסמכתא</th>
+      <th>סטטוס </th>
+      <th> סוג בטחון</th>
+      <th>ת.אירוע</th>
+      <th>ת.תוקף</th>
+      <th>סכום</th>
+      <th>סכום משוער</th>
+      <th> מטבע</th>
+      <th>מטרת הערבות</th>
+      <th>פרטים</th>
+    </tr>
+
+      <% 
+    guaranties.forEach(function(c) {
+    const ent_name = (c.ENT_TYPE === '4') ? c.ent_name :
+                     (c.ENT_TYPE === '3') ? c.SPLR_LONG_DSCR :
+                     (c.ENT_TYPE === '2') ? c.CUST_LONG_DSCR :
+                     (c.ENT_TYPE === '1') ? c.acnt_name : '—';
+
+    const status = (c.GRNT_STAT === 30) ? 'מאושר' :
+                 (c.GRNT_STAT === 40) ? 'מ.סופית' :
+                 (c.GRNT_STAT === 50) ? 'מבוטל' : '—';
+
+    const security_type = (c.GRNTY_TYPE_CODE === 1) ? 'המחאה' :
+                          (c.GRNTY_TYPE_CODE === 2) ? 'ע.בנקאית' :
+                          (c.GRNTY_TYPE_CODE === 3) ? 'שעבוד' :
+                          (c.GRNTY_TYPE_CODE === 4) ? 'פ.המחאות' :
+                          (c.GRNTY_TYPE_CODE === 5) ? 'המח זכות' :
+                          (c.GRNTY_TYPE_CODE === 6) ? 'מ.התחייבות' :
+                          (c.GRNTY_TYPE_CODE === 7) ? 'שטר חוב' :
+                          (c.GRNTY_TYPE_CODE === 8) ? 'פקדון' : '—';
+
+    const estimated_amount = (c.CUR_CODE === 1) ? c.AMNT * 1 :
+                             (c.CUR_CODE !== 1) ? c.AMNT * 1 : '—';
+
+    const details = ([1, 7].includes(c.GRNTY_TYPE_CODE)) ? c.THIRD_PARTY_DTLS : c.BNDG_DTLS;
+    const formatEventDate = new Date(c.EVNT_DATE).toLocaleDateString('en-GB');
+    const formatExpiryDate = new Date(c.EFCT_TO_DATE).toLocaleDateString('en-GB');
+%>
+    <tr>
+      <td class="right"><%= ent_name %></td>
+      <td class="center"><%= c.REFE  %></td>
+      <td class="center"><%= status %></td>
+      <td class="center"><%= security_type %></td>
+      <td class="center"><%= formatEventDate  %></td>
+      <td class="center"><%= formatExpiryDate  %></td>
+      <td class="left"><%= formatValue(c.AMNT) %></td>
+      <td class="left"><%= formatValue(estimated_amount) %></td>
+      <td class="center"><%= c.CUR_SHRT_NAME  %></td>
+      <td class="right"><%= c.GRNT_DSCR  %></td>
+      <td class="right"><%= details %></td>
+    </tr>
+<% }); %>
+    
+  </table>
+</div>
+
+
+
+
+
+
+</body>
+</html>

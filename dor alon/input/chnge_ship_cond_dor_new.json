@@ -1,0 +1,187 @@
+{
+    "name": "DorAlon Change Shipping Conditions",
+    "version": "1.0.1",
+    "remarks": [
+        "2025.11.23 create"
+    ],
+    "defaultParams": {
+        "firm_code": 1
+    },
+    "paramsValidation": [
+        {
+            "name": "firm_code",
+            "type": "number",
+            "require": true
+        },
+        {
+            "name": "customer_code",
+            "type": "string",
+            "require": true
+        }
+    ],
+    "stages": [
+        {
+            "name": "header",
+            "query": {
+                "select": [
+                    "CUSTS.CUST_LONG_DSCR",
+                    "CUSTS.CUST_CODE",
+                    "CUSTS.FIRM_CODE",
+                    "CUSTS.CRE_DATE",
+                    "CUSTS.ENT_CODE",
+                    "CUSTS.AGNT_CODE",
+                    "FIRMS.FIRM_LONG_NAME",
+                    "FIRMS.FIRM_CODE as FIRMS_FIRM_CODE",
+                    "ENTITIES.ENT_LONG_NAME",
+                    "ENTITIES.ENT_CODE as ENTITIES_ENT_CODE"
+                ],
+                "from": "CUSTS",
+                "join": [
+                    {
+                        "table": "FIRMS",
+                        "on": [
+                            {
+                                "key1": "CUSTS.FIRM_CODE",
+                                "key2": "FIRMS.FIRM_CODE"
+                            }
+                        ]
+                    }
+                ],
+                "leftJoin": [
+                    {
+                        "table": "ENTITIES",
+                        "on": [
+                            {
+                                "key1": "CUSTS.ENT_CODE",
+                                "key2": "ENTITIES.ENT_CODE"
+                            }
+                        ]
+                    }
+                ],
+                "children": [
+                    {
+                        "name": "agent",
+                        "from": "CUSTS",
+                        "select": [
+                            "CUST_CODE",
+                            "CUST_LONG_DSCR"
+                        ],
+                        "parentKey": "AGNT_CODE",
+                        "childKey": "CUST_CODE",
+                        "where": [
+                            {
+                                "field": "FIRM_CODE",
+                                "value": "%{params.firm_code}%"
+                            }
+                        ]
+                    }
+                ],
+                "where": [
+                    {
+                        "field": "CUSTS.FIRM_CODE",
+                        "value": "%{params.firm_code}%"
+                    },
+                    {
+                        "field": "CUSTS.CUST_CODE",
+                        "value": "%{params.customer_code}%"
+                    }
+                ]
+            },
+            "breakOnEmpty": true
+        },
+        {
+            "name": "parts_details",
+            "query": {
+                "select": [
+                    "PARTS.PART_CODE",
+                    "PARTS.ACTV_Y_N",
+                    "PARTS.PART_LONG_NAME",
+                    "PARTS.FIRM_CODE",
+                    "VU_PARTS_TRNS.TOT_AMNT",
+                    "VU_PARTS_TRNS.CUST_CODE",
+                    "MODL_NAMES.MODL_CODE",
+                    "MODL_NAMES.MODL_NAME",
+                    "VU_CRSTL_PART_H95.PART_H95_CODE"
+                ],
+                "from": "PARTS",
+                "join": [
+                    {
+                        "table": "VU_PARTS_TRNS",
+                        "on": [
+                            {
+                                "key1": "PARTS.PART_CODE",
+                                "key2": "VU_PARTS_TRNS.PART_CODE"
+                            },
+                            {
+                                "key1": "PARTS.FIRM_CODE",
+                                "key2": "VU_PARTS_TRNS.FIRM_CODE"
+                            }
+                        ]
+                    }
+                ],
+                "leftJoin": [
+                    {
+                        "table": "MODL_NAMES",
+                        "on": [
+                            {
+                                "key1": "PARTS.PART_CODE",
+                                "key2": "MODL_NAMES.PART_CODE"
+                            },
+                            {
+                                "key1": "PARTS.FIRM_CODE",
+                                "key2": "MODL_NAMES.FIRM_CODE"
+                            }
+                        ]
+                    },
+                    {
+                        "table": "VU_CRSTL_PART_H95",
+                        "on": [
+                            {
+                                "key1": "PARTS.FIRM_CODE",
+                                "key2": "VU_CRSTL_PART_H95.FIRM_CODE"
+                            },
+                            {
+                                "key1": "PARTS.PART_CODE",
+                                "key2": "VU_CRSTL_PART_H95.PART_CODE"
+                            }
+                        ]
+                    }
+                ],
+                "where": [
+                    {
+                        "field": "VU_PARTS_TRNS.TOT_AMNT",
+                        "value": 0,
+                        "type": ">"
+                    },
+                    {
+                        "field": "PARTS.FIRM_CODE",
+                        "value": "%{params.firm_code}%"
+                    },
+                    {
+                        "field": "VU_PARTS_TRNS.CUST_CODE",
+                        "value": "%{params.customer_code}%"
+                    }
+                ],
+                "orderBy": [
+                    {
+                        "column": "PARTS.PART_CODE"
+                    },
+                    {
+                        "column": "MODL_NAMES.MODL_CODE"
+                    }
+                ]
+            }
+        }
+    ],
+    "export": {
+        "html": {
+            "template": "dor alon change ship pdf"
+        },
+        "pdf": {
+            "template": "dor alon change ship pdf"
+        },
+        "printer": {
+            "template": "dor alon change ship pdf"
+        }
+    }
+}

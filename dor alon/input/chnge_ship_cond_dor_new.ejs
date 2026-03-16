@@ -1,0 +1,183 @@
+<% var version="2025.11.25" ; %>
+<html>
+    <head>
+
+    <style>
+    html { background: white;
+      zoom: 0.55;
+    }
+    body { direction: rtl; font-family: Tahoma; padding: 20px; }
+    table { width: 100%; border-collapse: collapse; border: 1px solid black; }
+    td { border-top: 1px solid black; border-right: 1px solid black; padding: 5px; }
+    .td2 { border-top: 0px solid black; }
+    .bold-font-header { font-weight: bold; font-size: 16pt; }
+    .font-header { font-size: 16pt; }
+    .bold-font { font-weight: bold; font-size: 12pt; }
+    .font { font-size: 12pt; }
+    .title { font-size: 18pt; font-weight: bold; color: #a40000; text-align: center; }
+    .container { width: 100%; display: flex; justify-content: space-between; }
+    .subheader { padding: 10px 20px; width: 100%; }
+    .header-box { width: 100%; border: 1px solid black; padding: 10px; }
+    .section { margin-bottom: 8px; }
+    .underline { text-decoration: underline; font-weight: bold; }
+    </style>
+
+    </head>
+
+    <body>
+
+        <% const h=header[0]; const agent=h.agent && h.agent.length ? h.agent[0] : {}; const dateObj=new Date(); const
+            day=String(dateObj.getDate()).padStart(2,'0'); const month=String(dateObj.getMonth()+1).padStart(2,'0');
+            const year=dateObj.getFullYear(); const time=dateObj.toTimeString().split(' ')[0];
+            const startDate = new Date(h.CRE_DATE);
+            const formattedStartDate = `${String(startDate.getMonth() + 1).padStart(2, ' 0')}/${startDate.getFullYear()}`; 
+        %>
+
+            <!-- שם החברה מימין למעלה -->
+            <div style="text-align:right; padding-top: 10px; padding-right: 30px;">
+                <div class="bold-font-header">
+                    <%= h.FIRM_LONG_NAME %>
+                </div>
+                <!-- <div class="font">92044M</div> -->
+            </div>
+            <hr>
+
+            <!-- כותרת עליונה -->
+            <div class="subheader" style="width: 100%; overflow: hidden;">
+                <!-- Column 1: Agent and Customer Details -->
+                <div class="first-column" style="float: right; width: 49%; text-align: right;">
+                    <div class="font bold-font" style="display: inline;">סוכן:</div>
+                    <div class="font" style="display: inline;">
+                        <%= agent.CUST_LONG_DSCR %>
+                    </div>
+                    <br><br>
+                    <div class="font bold-font" style="display: inline;">לקוח:</div>
+                    <div class="font" style="display: inline;">
+                        <%= h.CUST_CODE %>
+                    </div>
+                    <div class="font" style="display: inline;">
+                        <%= h.CUST_LONG_DSCR %>
+                    </div>
+                    <br><br>
+                    <div class="font bold-font" style="display: inline;">ישות:</div>
+                    <div class="font" style="display: inline;">
+                        <%= h.ENTITIES_ENT_CODE %>
+                    </div>
+                    <div class="font" style="display: inline;">
+                        <%= h.ENT_LONG_NAME %>
+                    </div>
+                    <br><br>
+                    <div class="font bold-font" style="display: inline;">תחילת עבודה:</div>
+                    <div class="font" style="display: inline;">
+                        <%= formattedStartDate %>
+                    </div>
+                </div>
+
+                <!-- Column 2: Date and Time -->
+                <div class="second-column" style="float: left; width: 49%; text-align: left; margin-left: 10px; ">
+                    <div class="font bold-font" style="display: inline;">תאריך:</div>
+                    <div class="font" style="display: inline;">
+                        <%= day %>/<%= month %>/<%= year %>
+                    </div>
+                    <br><br>
+                    <div class="font bold-font" style="display: inline;">שעת הדפסה:</div>
+                    <div class="font" style="display: inline;">
+                        <%= time %>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+
+            <!-- כותרת מרכזית -->
+            <div class="title">טופס בקשה לשינוי תנאי ממכר</div>
+            <hr>
+            <br>
+
+            <!-- טבלה -->
+            <table>
+
+                <tr style="background:#eee;">
+                    <td class="bold-font">קוד פריט</td>
+                    <td class="bold-font">שם פריט</td>
+                    <td class="bold-font">אשראי נוכחי</td>
+                    <td class="bold-font">קוד מחירון</td>
+                    <td class="bold-font" colspan="3" style="text-align: center;">סכום הנחה נוכחי</td>
+                    <td class="bold-font">סכום הנחה מבוקש</td>
+                </tr>
+                <tr style="background:#eee;">
+                    <td class="bold-font td2"></td>
+                    <td class="bold-font td2"></td>
+                    <td class="bold-font td2"></td>
+                    <td class="bold-font td2"></td>
+                    <td class="bold-font td2">סכום ללא מע"מ</td>
+                    <td class="bold-font td2">סכום כולל מע"מ</td>
+                    <td class="bold-font td2">אחוז הנחה</td>
+                    <td class="bold-font td2"></td>
+                </tr>
+                <% parts_details.forEach((p, i)=> { %>
+                    <tr>
+                        <td class="font">
+                            <%= p.PART_CODE %>
+                        </td>
+                        <td class="font">
+                            <%= p.PART_LONG_NAME %>
+                        </td>
+                        <td class="font"></td>
+                        <td class="font"></td>
+                        <td class="font"></td>
+                        <td class="font"></td>
+                         <td class="font"></td>
+                        <td class="font"></td>
+                    </tr>
+                    <% }) %>
+
+            </table>
+
+            <br><br>
+
+            <!-- הסבר -->
+            <div class="font bold-font">הסבר:</div>
+            <br>
+            <hr>
+            <br>
+            <hr>
+            <br>
+            <!-- חתימות -->
+            <div class="container" style="">
+                <span style="text-align:right;">
+                    <div class="bold-font" style="display: inline;">מנהל מכירות:</div>
+                    <div style="display: inline;">______________________</div>
+                </span>
+
+                <span style="text-align:left; margin-right: 60px;">
+                    <div class="bold-font" style="display: inline;">סמנכ"ל מכירות:</div>
+                    <div style="display: inline;">______________________</div>
+                </span>
+            </div>
+
+            <br><br>
+
+
+            <div class="container" style="">
+                <span style="text-align:right;">
+                    <div class="bold-font" style="text-align:right;  display: inline;">
+                        הוקלד למחשב ע"י:
+                    </div>
+                    <div style="display: inline;">______________________</div>
+                </span>
+
+
+                <span style=" margin-right: 20px;">
+                    <div class="bold-font" style="display: inline;">תאריך:</div>
+                    <div style="display: inline;">______________________</div>
+                </span>
+
+                <span style="margin-right: 20px;">
+                    <div class="bold-font" style="display: inline;">חתימה:</div>
+                    <div style="display: inline;" style="display: inline;">______________________</div>
+                </span>
+            </div>
+            <br><br>
+    </body>
+    </html>

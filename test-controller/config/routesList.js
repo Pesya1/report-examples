@@ -3,8 +3,16 @@ export default [
        {
         url:'/v' + config.controller.version + '/firms/:firm_code/test/report/query',
         method: "get",
-         permissions: ['all'],
+        //  permissions: ['all'],
         controller: "createStagesResult",
+        first: false,
+        timeout: 60000 
+    },
+       {
+        url:'/v' + config.controller.version + '/firms/:firm_code/test/report/result',
+        method: "get",
+        //  permissions: ['all'],
+        controller: "getReport",
         first: false,
         timeout: 60000 
     }

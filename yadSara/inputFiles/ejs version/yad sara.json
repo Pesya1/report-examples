@@ -1,8 +1,7 @@
 {
     "name": "YadSara transfer",
-    "vaersion": "1.0.4",
-    "remark": ["2024.12.09 move VU_WEB_YADS_LTA_331_UNION to new stage, nigreret",
-        "2024.10.08 orWhere VU_WEB_YADS_LTA_331_UNION.DOC_TYPE==parent || null"],
+    "vaersion": "1.0.1",
+    "remark": "2024.08.29 add temp part",
     "defaultParams": {
         "firm_code": 1,
         "primary_trans_class": 331
@@ -44,7 +43,10 @@
                     "DRIVERS.DRIVER_NAME",
                     "TRNS_CLSS_PARMS.MAIN_SPAWN_SECND_TRNS",
                     "LGSTC_TRNS_TIME.LINE_NBR",
-                    "LGSTC_TRNS_TIME.CRE_DATIME"
+                    "LGSTC_TRNS_TIME.CRE_DATIME",
+                    "VU_WEB_YADS_LTA_331_UNION.TO_DOC",
+                    "VU_WEB_YADS_LTA_331_UNION.TO_STRM_CODE_CHILD",
+                    "VU_WEB_YADS_LTA_331_UNION.TO_STRM_NAME_CHILD"
                 ],
                 "from": "LGSTC_ACTL_DOCS",
                 "where": [
@@ -59,6 +61,10 @@
                     {
                         "field": "LGSTC_ACTL_DOCS.PRMY_TRNS_CLSS",
                         "value": 331
+                    },
+                    {
+                        "field": "VU_WEB_YADS_LTA_331_UNION.DOC_TYPE",
+                        "value": "PARENT"
                     },
                     {
                         "field": "LGSTC_ACTL_DOCS.TRNS_STAT",
@@ -77,6 +83,27 @@
                             {
                                 "key1": "STRMS.FIRM_CODE",
                                 "key2": "LGSTC_ACTL_DOCS.FIRM_CODE"
+                            }
+                        ]
+                    },
+                    {
+                        "table": "VU_WEB_YADS_LTA_331_UNION",
+                        "on": [
+                            {
+                                "key1": "VU_WEB_YADS_LTA_331_UNION.FIRM_CODE",
+                                "key2": "LGSTC_ACTL_DOCS.FIRM_CODE"
+                            },
+                            {
+                                "key1": "VU_WEB_YADS_LTA_331_UNION.PRMY_TRNS_CLSS",
+                                "key2": "LGSTC_ACTL_DOCS.PRMY_TRNS_CLSS"
+                            },
+                            {
+                                "key1": "VU_WEB_YADS_LTA_331_UNION.DOC_NBR",
+                                "key2": "LGSTC_ACTL_DOCS.DOC_NBR"
+                            },
+                            {
+                                "key1": "VU_WEB_YADS_LTA_331_UNION.DOC_TYPE",
+                                "key2": "PARENT"
                             }
                         ]
                     },
@@ -127,45 +154,6 @@
                 "first": true
             },
             "breakOnEmpty": true
-        },
-        {
-            "name":"nigreret",
-            "query":{
-                "select":[
-                    "VU_WEB_YADS_LTA_331_UNION.TO_DOC",
-                    "VU_WEB_YADS_LTA_331_UNION.TO_STRM_CODE_CHILD",
-                    "VU_WEB_YADS_LTA_331_UNION.TO_STRM_NAME_CHILD"
-                ],
-                "from":"VU_WEB_YADS_LTA_331_UNION",
-                "where": [
-                    {
-                        "field": "VU_WEB_YADS_LTA_331_UNION.FIRM_CODE",
-                        "value": "%{params.firm_code}%"
-                    },
-                    {
-                        "field": "VU_WEB_YADS_LTA_331_UNION.DOC_NBR",
-                        "value": "%{params.doc_nbr}%"
-                    },
-                    {
-                        "field": "VU_WEB_YADS_LTA_331_UNION.PRMY_TRNS_CLSS",
-                        "value": 331
-                    },
-                    {
-                        "orWhere":[
-                            {
-                                "field": "VU_WEB_YADS_LTA_331_UNION.DOC_TYPE",
-                                "value": "PARENT"
-                            },
-                            {
-                                "field": "VU_WEB_YADS_LTA_331_UNION.DOC_TYPE",
-                                "value": null
-                            }
-                        ]
-                    }
-                ],
-                "first":true
-            },
-            "breakOnEmpty": false
         },
         {
             "name": "lgstc_actl_trns",

@@ -1,6 +1,12 @@
 const oracledb = require('oracledb');
 const fs = require('fs');
-
+const path=
+'../dor alon B/input/.ejs'
+// '../dor alon/input/chnge_shipkk_cond_dor_new.ejs'
+//  // '../yad sara demand/input files/demand.ejs'
+const id=13 // 2
+// 12 dor alon a
+//13 dor alon b
 const updateDB = async () => {
     try {
         // Set up the path to your Oracle Instant Client libraries
@@ -17,15 +23,20 @@ const updateDB = async () => {
             password: 'snartdb',
             connectString: '172.30.17.11:1521/3G'
         }
-        const connection = await oracledb.getConnection(g3);
+        const gYS={
+            user: 'dbtrans',
+            password: 'snartdb',
+            connectString: '10.1.200.11:1521/maale'
+        }
+        const connection = await oracledb.getConnection(u9d);
 
         console.log('Connected to Oracle database successfully.');
 
-        const data = fs.readFileSync('../yad sara demand/input files/demand.ejs', 'utf-8');
+        const data = fs.readFileSync(path, 'utf-8');
 
         const sqlQuery = `UPDATE WEB_REPORTS_TEMPLATES
                           SET DATA = :data
-                          WHERE ID = 2`;
+                          WHERE ID = ${id}`;
 
         const result = await connection.execute(sqlQuery, { data }, { autoCommit: true });
 

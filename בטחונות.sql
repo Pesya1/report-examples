@@ -1,0 +1,196 @@
+-- Full query with the requested fields
+-- Select fields grouped by their respective tables for clarity
+SELECT 
+    "GUARANTIES"."ENT_TYPE",
+    "GUARANTIES"."REFE",
+    "GUARANTIES"."GRNTY_TYPE_CODE",
+    "GUARANTIES"."EVNT_DATE",
+    "GUARANTIES"."EFCT_TO_DATE",
+    "GUARANTIES"."AMNT",
+    "GUARANTIES"."CUR_CODE",
+    -- CURS_NAMES table fields
+    "CURS_NAMES"."CUR_SHRT_NAME",
+    "GUARANTIES"."GRNT_DSCR",
+    "GUARANTIES"."THIRD_PARTY_DTLS",
+    "GUARANTIES"."BNDG_DTLS",
+    "GUARANTIES"."GRNT_STAT",
+    -- SPLRS table fields
+    "SPLRS"."SPLR_LONG_DSCR",
+    -- CUSTS table fields
+    "CUSTS"."CUST_LONG_DSCR",
+
+
+--    no need
+    -- FIRMS table fields
+    "FIRMS"."FIRM_LONG_NAME",
+
+    -- GUARANTIES table fields
+    "GUARANTIES"."CUST_CODE",
+    "GUARANTIES"."FIRM_CODE",
+    "GUARANTIES"."ACNT_CODE",
+    "GUARANTIES"."GUARANTY_KIND",
+    "GUARANTIES"."STATUS",
+    "GUARANTIES"."SEQ_NBR_PRNTD",
+    "GUARANTIES"."GRNTY_MDD_CODE",
+    "GUARANTIES"."GRNTY_CUR_CODE",
+    "GUARANTIES"."BANK_ACNT_NBR",
+
+
+    "CUSTS"."AGNT_CODE",
+
+    -- CUSTS_agnt table fields
+    "CUSTS_agnt"."CUST_LONG_DSCR",
+
+    -- VU_AGNTS_OPTN_45 table fields
+    "VU_AGNTS_OPTN_45"."SUPER_AGNT",
+    "VU_AGNTS_OPTN_45"."OPTN_CODE",
+
+
+
+    -- VU_STD_FIRM_DAY table fields
+    "VU_STD_FIRM_DAY"."DAY_DATE",
+
+
+
+    -- Subqueries
+    (
+        SELECT "ENTITIES"."ENT_LONG_NAME"
+        FROM "ENTITIES"
+        WHERE "ENTITIES"."ENT_CODE" = NVL("GUARANTIES"."CUST_CODE", 0)
+    ),
+    (
+        SELECT "ACNTS"."ACNT_LONG_NAME"
+        FROM "ACNTS"
+        WHERE "ACNTS"."FIRM_CODE" = "GUARANTIES"."FIRM_CODE"
+          AND "ACNTS"."ACNT_CODE" = NVL("GUARANTIES"."ACNT_CODE", 0)
+    ),
+
+    -- Functions
+    get_mdd_fctr(
+        "GUARANTIES"."GRNTY_MDD_CODE",
+        "GUARANTIES"."GRNTY_BASE_DATE",
+        "VU_STD_FIRM_DAY"."DAY_DATE"
+    ),
+    cur_cnvr_fctr_cog(
+        1,
+        "GUARANTIES"."CUR_CODE",
+        1,
+        "VU_STD_FIRM_DAY"."DAY_DATE",
+        '0'
+    )
+
+FROM
+    "DBTRANS"."GUARANTIES" "GUARANTIES"
+    INNER JOIN "DBTRANS"."CURS_NAMES" "CURS_NAMES"
+        ON "GUARANTIES"."CUR_CODE" = "CURS_NAMES"."CUR_CODE"
+
+    LEFT OUTER JOIN "DBTRANS"."CUSTS" "CUSTS"
+        ON "GUARANTIES"."FIRM_CODE" = "CUSTS"."FIRM_CODE"
+        AND "GUARANTIES"."CUST_CODE" = "CUSTS"."CUST_CODE"
+    INNER JOIN "DBTRANS"."FIRMS" "FIRMS"
+        ON "GUARANTIES"."FIRM_CODE" = "FIRMS"."FIRM_CODE"
+    INNER JOIN "DBTRANS"."VU_STD_FIRM_DAY" "VU_STD_FIRM_DAY"
+        ON "GUARANTIES"."FIRM_CODE" = "VU_STD_FIRM_DAY"."FIRM_CODE"
+    LEFT OUTER JOIN "DBTRANS"."SPLRS" "SPLRS"
+        ON "GUARANTIES"."FIRM_CODE" = "SPLRS"."FIRM_CODE"
+        AND "GUARANTIES"."CUST_CODE" = "SPLRS"."SPLR_CODE"
+    LEFT OUTER JOIN "DBTRANS"."CUSTS" "CUSTS_agnt"
+        ON "CUSTS"."FIRM_CODE" = "CUSTS_agnt"."FIRM_CODE"
+        AND "CUSTS"."AGNT_CODE" = "CUSTS_agnt"."CUST_CODE"
+    LEFT OUTER JOIN "DBTRANS"."VU_AGNTS_OPTN_45" "VU_AGNTS_OPTN_45"
+        ON "CUSTS"."FIRM_CODE" = "VU_AGNTS_OPTN_45"."FIRM_CODE"
+        AND "CUSTS"."AGNT_CODE" = "VU_AGNTS_OPTN_45"."AGNT_CODE"
+
+WHERE
+    "GUARANTIES"."CUST_CODE" = '1'
+    AND "VU_STD_FIRM_DAY"."DAY_DATE" >= TO_DATE('24-11-2025 00:00:00', 'DD-MM-YYYY HH24:MI:SS')
+    AND "VU_STD_FIRM_DAY"."DAY_DATE" < TO_DATE('25-11-2025 00:00:00', 'DD-MM-YYYY HH24:MI:SS')
+    AND "GUARANTIES"."FIRM_CODE" = 21
+
+ORDER BY
+    "GUARANTIES"."FIRM_CODE",
+    "GUARANTIES"."GUARANTY_KIND",
+    "GUARANTIES"."BANK_ACNT_NBR",
+    "VU_AGNTS_OPTN_45"."OPTN_CODE",
+    "CUSTS"."AGNT_CODE",
+    "GUARANTIES"."CUST_CODE";
+
+
+-- -------------------
+לקוח, כרטיס
+ent_name=if {GUARANTIES.ENT_TYPE}='4' then
+{%ent_name}
+else
+if {GUARANTIES.ENT_TYPE}='3' then
+{SPLRS.SPLR_LONG_DSCR}
+else
+if {GUARANTIES.ENT_TYPE}='2' then
+{CUSTS.CUST_LONG_DSCR}
+else
+if {GUARANTIES.ENT_TYPE}='1' then
+{%acnt_name}
+
+סטטוס
+stat=Switch ({GUARANTIES.GRNT_STAT}=30,'מאושר',
+        {GUARANTIES.GRNT_STAT}=40,'מ.סופית', 
+        {GUARANTIES.GRNT_STAT}=50,'מבוטל'  )
+
+סוג בטחון
+Switch ({GUARANTIES.GRNTY_TYPE_CODE}=1,'המחאה',
+        {GUARANTIES.GRNTY_TYPE_CODE}=2,"ע.בנקאית", 
+        {GUARANTIES.GRNTY_TYPE_CODE}=3,'שעבוד',
+        {GUARANTIES.GRNTY_TYPE_CODE}=4,'פ.המחאות',
+        {GUARANTIES.GRNTY_TYPE_CODE}=5,'המח זכות',
+        {GUARANTIES.GRNTY_TYPE_CODE}=6,'מ.התחייבות',
+        {GUARANTIES.GRNTY_TYPE_CODE}=7,'שטר חוב',
+        {GUARANTIES.GRNTY_TYPE_CODE}=8,'פקדון' )
+
+
+סכום משוערך
+if {GUARANTIES.CUR_CODE}=1 then //and {GUARANTIES.GRNTY_MDD_CODE}<>0 then
+{GUARANTIES.AMNT}*{@madad}
+else
+if {GUARANTIES.CUR_CODE}<>1 then
+{GUARANTIES.AMNT}*{%exch_rate}
+
+
+פרטים
+if {GUARANTIES.GRNTY_TYPE_CODE} in [1,7] then {GUARANTIES.THIRD_PARTY_DTLS} else {GUARANTIES.BNDG_DTLS}
+
+-- -----------------------
+-- Partial query with the requested fields and including the ACNTS table
+SELECT 
+    "GUARANTIES"."ENT_TYPE",
+    "GUARANTIES"."REFE",
+    "GUARANTIES"."GRNTY_TYPE_CODE",
+    "GUARANTIES"."EVNT_DATE",
+    "GUARANTIES"."EFCT_TO_DATE",
+    "GUARANTIES"."AMNT",
+    "GUARANTIES"."CUR_CODE",
+    -- CURS_NAMES table fields
+    "CURS_NAMES"."CUR_SHRT_NAME",
+    "GUARANTIES"."GRNT_DSCR",
+    "GUARANTIES"."THIRD_PARTY_DTLS",
+    "GUARANTIES"."BNDG_DTLS",
+    -- SPLRS table fields
+    "SPLRS"."SPLR_LONG_DSCR",
+    -- CUSTS table fields
+    "CUSTS"."CUST_LONG_DSCR",
+    -- ACNTS table fields
+    "ACNTS"."ACNT_LONG_NAME"
+FROM
+    "DBTRANS"."GUARANTIES" "GUARANTIES"
+    INNER JOIN "DBTRANS"."CURS_NAMES" "CURS_NAMES"
+        ON "GUARANTIES"."CUR_CODE" = "CURS_NAMES"."CUR_CODE"
+    LEFT OUTER JOIN "DBTRANS"."CUSTS" "CUSTS"
+        ON "GUARANTIES"."FIRM_CODE" = "CUSTS"."FIRM_CODE"
+        AND "GUARANTIES"."CUST_CODE" = "CUSTS"."CUST_CODE"
+    LEFT OUTER JOIN "DBTRANS"."SPLRS" "SPLRS"
+        ON "GUARANTIES"."FIRM_CODE" = "SPLRS"."FIRM_CODE"
+        AND "GUARANTIES"."CUST_CODE" = "SPLRS"."SPLR_CODE"
+    LEFT OUTER JOIN "DBTRANS"."ACNTS" "ACNTS"
+        ON "GUARANTIES"."FIRM_CODE" = "ACNTS"."FIRM_CODE"
+        AND "GUARANTIES"."ACNT_CODE" = "ACNTS"."ACNT_CODE"
+WHERE
+    "GUARANTIES"."FIRM_CODE" = 21
+    and "GUARANTIES"."CUST_CODE" = '1';

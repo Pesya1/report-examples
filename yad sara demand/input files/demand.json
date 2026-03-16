@@ -1,10 +1,11 @@
 {
   "name": "YadSara demand",
-  "vaersion": "1.0.0",
+  "vaersion": "1.0.1",
   "remarks": [
     "2024.09.24 create",
     "2024.09.25 copy",
-    "2024.09.26 breakOnEmpty"
+    "2024.09.26 breakOnEmpty",
+    "2024.10.10  TO_STRM_CODE, not from strm_name"
   ],
   "defaultParams": {
     "firm_code": 1,
@@ -52,7 +53,7 @@
             "raw": "VU_WEB_STRMS.STRM_NAME as TO_STRM_NAME"
           },
           {
-            "raw": "VU_WEB_STRMS.STRM_NAME as TO_STRM_CODE"
+            "raw": "VU_WEB_STRMS.STRM_CODE as TO_STRM_CODE"
           }
         ],
         "from": "LGSTC_FRCST_DOCS",

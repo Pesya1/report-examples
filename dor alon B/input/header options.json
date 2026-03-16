@@ -1,0 +1,9 @@
+{
+    "header": {
+        "height": "15mm",
+        "contents": "<div style=\"text-align: left; margin-bottom: 30px;\"><span style=\"color: #444;\">עמוד {{page}}</span> מתוך <span>{{pages}}</span></div>"
+    },
+    "border": {
+        "bottom": "30px"
+    }
+}

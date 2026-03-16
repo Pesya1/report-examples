@@ -1,0 +1,54 @@
+{
+        "header": [
+            {
+                "FIRM_LONG_NAME": "דור אלון אנרגיה בישראל (1988) בע\"מ",
+                "agent": [
+                    {
+                        "CUST_CODE": "120",
+                        "CUST_LONG_DSCR": "חנוך רוזן"
+                    }
+                ],
+                "CUST_CODE": "1",
+                "CUST_LONG_DSCR": "אברהם הירשברג",
+                "CRE_DATE": "1987-03-22T22:00:00.000Z",
+                "ENTITIES_ENT_CODE": 66,
+                "ENT_LONG_NAME": "שוקי ישויות בע\"מ",
+                "CLOSE_RSN":"2",
+                "CLOSE_DATE":"2025-12-31T22:00:00.000Z",
+                "MAX_CREDIT":130,
+                "PMNT_TYPE":"ס",
+
+                
+                "----":"no need",
+                "ENT_CODE": 66,
+                "FIRM_CODE": 21,
+                "AGNT_CODE": "120",
+                "FIRMS_FIRM_CODE": 21
+            }
+        ],
+        "parts_details": [
+            {
+                "PART_CODE": "1",
+                "ACTV_Y_N": "כ",
+                "PART_LONG_NAME": "סולר מת''ס",
+                "FIRM_CODE": 21,
+                "TOT_AMNT": 3,
+                "CUST_CODE": "1",
+                "MODL_CODE": null,
+                "MODL_NAME": null,
+                "PART_H95_CODE": null
+            },
+            {
+                "PART_CODE": "101012",
+                "ACTV_Y_N": "כ",
+                "PART_LONG_NAME": "כמו 101010 - מנוהל",
+                "FIRM_CODE": 21,
+                "TOT_AMNT": 10,
+                "CUST_CODE": "1",
+                "MODL_CODE": null,
+                "MODL_NAME": null,
+                "PART_H95_CODE": null
+            }
+        ],
+        "credits":[]
+    }

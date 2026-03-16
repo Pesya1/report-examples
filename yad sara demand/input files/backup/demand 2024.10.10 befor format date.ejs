@@ -1,4 +1,4 @@
-<% var version="2024.12.9 2 nigreret" %>
+<% var version="2024.09.26 zoom" %>
 
     <html>
 
@@ -8,7 +8,7 @@
 
         <style>
             html {
-                zoom: 0.55;
+                 zoom: 0.55; 
                 background-color: white;
             }
 
@@ -157,42 +157,34 @@
                         </span>
 
                         <span class="font">
-                            <!-- <%= lgstc_actl_docs.EVNT_DATE.split('T')[0] %> -->
-                            <%= (() => {
-                                const date = new Date(lgstc_actl_docs.EVNT_DATE);
+                 
+                            <!-- <%= (() => {
+                                const date = new Date(lgstc_frcst_docs.EVNT_DATE);
                                 const day = String(date.getDate()).padStart(2, '0');
                                 const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
                                 const year = date.getFullYear();
                                 return `${day}/${month}/${year}`;
-                              })() %>
+                              })() %> -->
+
+                              <%
+                              const date = new Date(lgstc_frcst_docs.EVNT_DATE);
+                              const day = date.getUTCDate();
+                              const month = date.getUTCMonth() + 1; // Months are zero-based
+                              const year = date.getUTCFullYear();
+                              %>
+                              
+                              <%= `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}` %>
+
                         </span>
 
 
-                        <span class="font">
-                            <!-- <%= lgstc_actl_docs.EVNT_DATE.split('T')[1].split('.')[0] %> -->
-                        </span>
-
+                      
                     </div>
 
 
                     <br />
 
-                    <!-- מספר הזמנה -->
-                    <% if (lgstc_actl_docs.ORDR_NBR) { %>
-                        <div style="margin-top:10px;">
-                            <span class="bold-font">
-                                דרישה:
-                            </span>
-                    
-                            <span class="font">
-                                <%= lgstc_actl_docs.ORDR_NBR %>
-                            </span>
-                            <br />
-                        </div>
-                    <% } %>
-
-                    <br />
-
+                  
 
                     <!-- מספר דף -->
                     <!-- <div style="margin-top:20px;display: inline-block;">
@@ -206,90 +198,55 @@
 
         <!-- title -->
         <div class="border-container">
-            <!--מחסן שולח-->
+            <!-- to מחסן דורש-->
             <div class="section">
                 <span class="underline-text">
-                    מחסן שולח:
+                    מחסן דורש:
                 </span>
                 <span class="font">
-                    <%=lgstc_actl_docs.DFLT_STRM_CODE %>
+                    <%=lgstc_frcst_docs.TO_STRM_CODE %>
                 </span>
 
                 <span class="font">
-                    <%=lgstc_actl_docs.STRM_NAME %>
+                    <%=lgstc_frcst_docs.TO_STRM_NAME %>
                 </span>
             </div>
 
-            <!--מחסן מקבל-->
+            <!--מחסן מנפק-->
             <div class="section">
                 <span class="underline-text" style="padding-left: 5px;">
-                    מחסן מקבל:
+                    מחסן מנפק:
                 </span>
                 <span class="font">
-                    <%=lgstc_actl_docs.DFLT_TO_STRM_CODE %>
+                    <%=lgstc_frcst_docs.STRM_CODE %>
                 </span>
 
                 <span class="font">
-                    <%=stream_to.STRM_NAME %>
+                    <%=lgstc_frcst_docs.STRM_NAME %>
                 </span>
             </div>
-
-            <% if (nigreret && nigreret.TO_DOC) { %>
-                <div>
-                        <!-- יעד הסניף-->
-                        <div class="section">
-                            <span class="underline-text">
-                               יעד הסניף:
-                            </span>
-                            <span class="font">
-                                <%=nigreret.TO_STRM_CODE_CHILD %>
-                            </span>
-            
-                            <span class="font">
-                                <%=nigreret.TO_STRM_NAME_CHILD %>
-                            </span>
-                        </div>
-            
-                        <!-- מספר נגרת-->
-                        <div class="section">
-                            <span class="underline-text" style="padding-left: 5px;">
-                                מספר נגררת:
-                            </span>
-                            <span class="font">
-                                <%=nigreret.TO_DOC %>
-                            </span>
-                        </div>
-                    </div>
-                        <% } %>
-
-
         </div>
 
         <!-- sub title -->
         <div width="100%" class="yellow" style="width: 100%;margin-top: 20px;">
-            <!-- הזמנת רכש -->
+            <!--  מספר דרישה להעברה -->
             <div class="container">
                 <div style="display: inline; margin-top: 10px;width: 100%;height: 50px; padding:5px !important">
                     <span class="bold-font" style="font-size:16pt;">
 
-                        <% let resultText; %>
+                        <% let resultText = 'דרישה להעברה בין מחסנים'; %>
 
-                        <% if (['1', '2'].includes(lgstc_actl_docs.DFLT_STRM_CODE)) { %>
-                            <% resultText = 'תעודת משלוח לסניף/מחלקה:' + ' (' + lgstc_actl_docs.PRMY_TRNS_CLSS.toString()+')'; %>
-                        <% } else if (['1', '9'].includes(lgstc_actl_docs.DFLT_TO_STRM_CODE)) { %>
-                            <% resultText = 'תעודת החזרה למחסן ראשי:' + ' (' + lgstc_actl_docs.PRMY_TRNS_CLSS.toString()+')'; %>
-                        <% } else { %>
-                            <% resultText = 'העברה בין מחסנים:' + ' (' + lgstc_actl_docs.PRMY_TRNS_CLSS.toString() +')'; %>
+                        <% if (lgstc_frcst_docs.TRNS_STAT > 40) { %>
+                            <% resultText = 'דרישה סופית להעברה בין מחסנים'; %>
                         <% } %>
                         
                         <%= resultText %>
-
                     </span>
                     <span class="bold-font" style="font-size: 16pt;">
 -
                     </span>
                     <span class="bold-font" style="font-size: 16pt;">
-                        <%=lgstc_actl_docs.DOC_NBR %>
+                        <%=lgstc_frcst_docs.DOC_NBR %>
                     </span>
                 </div>
             </div>
@@ -339,7 +296,7 @@
                 </tr>
 
                 <!-- map rows -->
-                <% lgstc_actl_trns.forEach(item=> { %>
+                <% lgstc_frcst_trns.forEach(item=> { %>
 
                     <!-- row -->
                     <tr style="background-color: rgb(255, 255, 255);">
@@ -357,7 +314,7 @@
 
                         <!-- תיאור- שם פריט-->
                         <td><span class="font">
-                                <%=item.PART_DSCR_XH %>
+                                <%=item.PART_LONG_NAME %>
                             </span>
                             <br />
                             <!-- <span class="font2">
@@ -376,18 +333,18 @@
 
                         <!-- כמות מוזמנת -->
                         <td><span class="font">
-                                <%=item.ORDR_QNTY %>
+                                <%=item.QNTY %>
 
                             </span></td>
 
                         <!-- כמות מאושרת -->
                         <td><span class="font">
-                                <%=item.APROVAL_QNTY %>
+                                <%=item.QNTY %>
                             </span></td>
 
                         <!-- כמות בפועל -->
                         <td><span class="font">
-                                <%=item.QNTY_1 %>
+                                <%=item.SHIP_QNTY %>
                             </span></td>
                     </tr>
 

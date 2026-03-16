@@ -1,0 +1,22 @@
+<style>
+  .bold-font-header { font-weight: bold; font-size: 16pt; }
+  .top-row { display:flex; justify-content:space-between; align-items:flex-start; }
+  .meta { font-size:10pt; }
+</style>
+<!-- Company name top right -->
+<div style="text-align:right; padding-top: 10px; padding-right: 30px;">
+    <div class="bold-font-header">
+        <%= h.FIRM_LONG_NAME %>
+    </div>
+    <!-- <div class="font">92044N</div> -->
+</div>
+<hr>
+
+<!-- top header -->
+<div class="top-row">
+  <div class="meta left">
+    <div>תאריך הדפסה: <strong class="bold"><%= printDay %>/<%= printMonth %>/<%= printYear %></strong></div>
+    <div>שעת הדפסה: <strong class="bold"><%= printTime %></strong></div>
+    <div>דף <strong class="bold">{{page}}</strong> מתוך <strong class="bold">1</strong></div>
+  </div>
+</div>

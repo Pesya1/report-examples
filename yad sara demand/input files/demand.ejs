@@ -158,22 +158,21 @@
 
                         <span class="font">
                  
-                            <!-- <%= (() => {
+                             <%= (() => {
                                 const date = new Date(lgstc_frcst_docs.EVNT_DATE);
                                 const day = String(date.getDate()).padStart(2, '0');
                                 const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
                                 const year = date.getFullYear();
                                 return `${day}/${month}/${year}`;
-                              })() %> -->
-
-                              <%
+                              })() %> 
+                              <!-- <%
                               const date = new Date(lgstc_frcst_docs.EVNT_DATE);
                               const day = date.getUTCDate();
                               const month = date.getUTCMonth() + 1; // Months are zero-based
                               const year = date.getUTCFullYear();
                               %>
                               
-                              <%= `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}` %>
+                              <%= `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}` %> 
 
                         </span>
 
@@ -280,11 +279,10 @@
                         </span><span class="bold-font">
                         </span><br /></SPAN></td>
 
-                    <!-- כמות מאושרת -->
-                    <td class="headertr"><span class="bold-font">
-                            כמות מאושרת
-                        </span><span class="bold-font">
-                        </span><br /></SPAN></td>
+                      <!-- כמות מאושרת - רק אם TRNS_STAT == 30 -->
+        <% if (lgstc_frcst_docs.TRNS_STAT == 30) { %>
+            <td class="headertr"><span class="bold-font">כמות מאושרת</span></td>
+        <% } %>
 
                     <!--  כמות בפועל -->
                     <td class="headertr"><span class="bold-font">
@@ -337,10 +335,10 @@
 
                             </span></td>
 
-                        <!-- כמות מאושרת -->
-                        <td><span class="font">
-                                <%=item.QNTY %>
-                            </span></td>
+                                <!-- כמות מאושרת - רק אם TRNS_STAT == 30 -->
+            <% if (lgstc_frcst_docs.TRNS_STAT == 30) { %>
+                <td><span class="font"><%= item.QNTY %></span></td>
+            <% } %>
 
                         <!-- כמות בפועל -->
                         <td><span class="font">
